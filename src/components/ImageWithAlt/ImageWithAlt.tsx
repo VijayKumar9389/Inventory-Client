@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { FaBox } from 'react-icons/fa6';
+import axios from 'axios';
 
 const ImageWithFallback: React.FC<{ imageName: string | null }> = ({ imageName }) => {
     const [imageUrl, setImageUrl] = useState<string | null>(null);
 
     useEffect(() => {
-        if(!imageName) return;
+        if (!imageName) return;
+
+        // Get the base URL from environment variables
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+        if (!API_BASE_URL) {
+            throw new Error("VITE_API_BASE_URL is not defined");
+        }
 
         const fetchImageUrl = async () => {
             try {
-                const response = await fetch(`http://localhost:4005/api/images/${imageName}`);
-                if (response.ok) {
-                    const data = await response.json();
+                const endpoint = `${API_BASE_URL}/api/images/${imageName}`;
+                const response = await axios.get(endpoint);
+                if (response.status === 200) {
+                    const data = response.data;
                     setImageUrl(data.url);
                 } else {
                     throw new Error('Failed to fetch image URL');
@@ -20,7 +29,6 @@ const ImageWithFallback: React.FC<{ imageName: string | null }> = ({ imageName }
                 console.error('Error fetching image URL:', error);
             }
         };
-
 
         fetchImageUrl();
 

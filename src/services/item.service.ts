@@ -1,18 +1,25 @@
-// Get all items
-import axios, {AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 import {
     Item,
     ItemRecord,
     ItemWithInventory,
     NewItemInput,
-    UpdateItemInput, UpdateItemRecordInput,
+    UpdateItemInput,
+    UpdateItemRecordInput,
+    NewItemRecordInput
 } from "../models/item.models.ts";
-import {NewItemRecordInput} from "../models/item.models.ts";
+
+// Get the base URL from environment variables
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+if (!API_BASE_URL) {
+    throw new Error("VITE_API_BASE_URL is not defined");
+}
 
 // Get all items
 export const getItems = async (): Promise<ItemWithInventory[]> => {
     try {
-        const endpoint: string = `http://localhost:4005/item/getall`;
+        const endpoint: string = `${API_BASE_URL}/item/getall`;
         const response: AxiosResponse<ItemWithInventory[]> = await axios.get(endpoint);
         return response.data;
     } catch (error) {
@@ -24,7 +31,7 @@ export const getItems = async (): Promise<ItemWithInventory[]> => {
 // Update the function signature to accept either UpdateItemRecordInput or FormData
 export const updateItemRecord = async (recordId: number, recordInput: UpdateItemRecordInput): Promise<ItemRecord> => {
     try {
-        const endpoint: string = `http://localhost:4005/item-record/update/${recordId}`;
+        const endpoint: string = `${API_BASE_URL}/item-record/update/${recordId}`;
         const response: AxiosResponse<ItemRecord> = await axios.put(endpoint, recordInput, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -40,7 +47,7 @@ export const updateItemRecord = async (recordId: number, recordInput: UpdateItem
 // Update Item by ID
 export const updateItem = async (itemId: number, itemData: UpdateItemInput): Promise<Item> => {
     try {
-        const endpoint: string = `http://localhost:4005/item/update/${itemId}`;
+        const endpoint: string = `${API_BASE_URL}/item/update/${itemId}`;
         const response: AxiosResponse<Item> = await axios.put(endpoint, itemData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -56,7 +63,7 @@ export const updateItem = async (itemId: number, itemData: UpdateItemInput): Pro
 //Create Item
 export const createItem = async (formData: NewItemInput): Promise<Item> => {
     try {
-        const endpoint: string = `http://localhost:4005/item/create`;
+        const endpoint: string = `${API_BASE_URL}/item/create`;
         const response: AxiosResponse<Item> = await axios.post(endpoint, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -72,7 +79,7 @@ export const createItem = async (formData: NewItemInput): Promise<Item> => {
 // Get all items
 export const deleteItem = async (itemId: number): Promise<Item> => {
     try {
-        const endpoint: string = `http://localhost:4005/item/delete/${itemId}`;
+        const endpoint: string = `${API_BASE_URL}/item/delete/${itemId}`;
         const response: AxiosResponse<Item> = await axios.delete(endpoint);
         return response.data;
     } catch (error) {
@@ -84,7 +91,7 @@ export const deleteItem = async (itemId: number): Promise<Item> => {
 // Get an item by ID
 export const getItemById = async (itemId: number): Promise<ItemWithInventory> => {
     try {
-        const endpoint: string = `http://localhost:4005/item/get/${itemId}`;
+        const endpoint: string = `${API_BASE_URL}/item/get/${itemId}`;
         const response: AxiosResponse<ItemWithInventory> = await axios.get(endpoint);
         return response.data;
     } catch (error) {
@@ -96,7 +103,7 @@ export const getItemById = async (itemId: number): Promise<ItemWithInventory> =>
 // Create a new item record
 export const createItemRecord = async (formData: NewItemRecordInput): Promise<ItemRecord> => {
     try {
-        const endpoint: string = `http://localhost:4005/item-record/create`;
+        const endpoint: string = `${API_BASE_URL}/item-record/create`;
         const response: AxiosResponse<ItemRecord> = await axios.post(endpoint, formData);
         return response.data;
     } catch (error) {
@@ -108,7 +115,7 @@ export const createItemRecord = async (formData: NewItemRecordInput): Promise<It
 // Delete an item record
 export const deleteItemRecord = async (recordId: number): Promise<ItemRecord> => {
     try {
-        const endpoint: string = `http://localhost:4005/item-record/delete/${recordId}`;
+        const endpoint: string = `${API_BASE_URL}/item-record/delete/${recordId}`;
         const response: AxiosResponse<ItemRecord> = await axios.delete(endpoint);
         return response.data;
     } catch (error) {

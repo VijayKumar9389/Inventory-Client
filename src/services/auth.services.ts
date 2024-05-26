@@ -1,5 +1,12 @@
 import axios, { AxiosResponse } from "axios";
-import {setLogout} from "../store/reducers/auth.reducer.ts";
+import { setLogout } from "../store/reducers/auth.reducer.ts";
+
+// Get the base URL from environment variables
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+if (!API_BASE_URL) {
+    throw new Error("VITE_API_BASE_URL is not defined");
+}
 
 // Function to verify refresh token
 export const verifyRefreshToken = async (): Promise<{ auth: boolean, user: string }> => {
@@ -9,7 +16,7 @@ export const verifyRefreshToken = async (): Promise<{ auth: boolean, user: strin
             throw new Error('Refresh token not found');
         }
 
-        const endpoint: string = "http://localhost:4005/user/verify-token";
+        const endpoint: string = `${API_BASE_URL}/user/verify-token`;
         const config = {
             headers: {
                 refreshToken: refreshToken
@@ -34,7 +41,7 @@ export const refreshAccessToken = async (): Promise<boolean> => {
 
         // Send a POST request to refresh the access token
         const response = await axios.post(
-            'http://localhost:4005/user/refresh-accessToken',
+            `${API_BASE_URL}/user/refresh-accessToken`,
             {},
             {
                 headers: {
