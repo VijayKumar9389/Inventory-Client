@@ -1,0 +1,94 @@
+@import '../../styles/theme/variables';
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  padding: $spacing-medium;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 40px; // Adjust the width to make the logo smaller
+      height: auto; // Maintain aspect ratio
+      margin-right: 10px; // Add some space between the logo and the text
+    }
+
+    h1 {
+      font-size: 1.5rem; // Adjust the font size of the text
+      font-weight: bold; // Add font weight if needed
+    }
+  }
+
+  .menu-list {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+
+  .menu-item {
+    padding: $spacing-small;
+    margin-right: $spacing-small;
+    border-radius: $border-radius-small;
+    list-style: none;
+    transition: ease-in-out .3s;
+    cursor: pointer;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      color: $text-color;
+      font-size: 1.2rem;
+      margin-right: $spacing-small;
+    }
+
+    a {
+      text-decoration: none;
+      color: $text-color-light;
+      font-weight: bold;
+      display: block;
+      transition: ease-in-out .3s;
+    }
+
+    &:hover {
+      background-color: $shade-dark; /* Darken the color on hover */
+
+      a {
+        color: $text-color;
+      }
+    }
+  }
+
+  .logout-btn {
+    background: transparent;
+    color: $text-color;
+    font-weight: bold;
+
+    &:hover {
+      background-color: $shade-dark;
+    }
+
+    .icon {
+      font-size: 1rem;
+      margin-left: $spacing-small;
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%; /* Take full width on smaller screens */
+    .menu-item {
+      margin-bottom: 5px; /* Reduce margin on smaller screens */
+    }
+  }
+}

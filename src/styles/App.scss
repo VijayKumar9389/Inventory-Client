@@ -1,0 +1,33 @@
+@import 'theme/variables.scss';
+@import 'theme/form.scss';
+@import 'theme/table.scss';
+@import 'theme/layout.scss';
+@import 'theme/ui.scss';
+@import 'theme/typography.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+
+  @media (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

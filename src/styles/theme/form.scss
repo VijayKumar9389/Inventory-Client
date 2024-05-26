@@ -1,0 +1,41 @@
+@import "src/styles/theme/variables.scss";
+
+.form {
+  padding: $spacing-medium;
+
+  button {
+    margin-top: $spacing-medium
+  }
+
+  .form-group {
+    margin-bottom: $spacing-small;
+    width: 100%;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: $text-color-light;
+      font-weight: normal;
+      text-align: left;
+    }
+
+    input[type="checkbox"] {
+      width: 40px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: $spacing-small;
+      border: 1px solid #ddd;
+      border-radius: $border-radius-small;
+      font-size: 16px;
+      background-color: #f4f4f4;
+    }
+
+    .form-textarea {
+      min-height: 100px;
+    }
+  }
+
+}

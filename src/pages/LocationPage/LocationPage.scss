@@ -1,0 +1,184 @@
+// LocationPage.scss
+@import 'src/styles/theme/variables.scss';
+
+.inventory-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+
+  .inventory-item {
+    border-radius: $border-radius;
+    margin-bottom: $spacing-medium;
+    width: 100%;
+    padding: $spacing-small;
+    background-color: $card-background-color;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+
+    .inventory-location {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .inventory-quantity {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+
+      strong {
+        color: $text-color;
+      }
+    }
+  }
+}
+
+.record-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.record-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; // Add a bottom border for separation
+}
+
+.record-details {
+  flex: 1;
+}
+
+.chip {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.red {
+  background-color: #ffcccc;
+}
+
+.green {
+  background-color: #ccffcc;
+}
+
+
+
+.location-page-details {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-medium;
+
+  h1 {
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0;
+    font-weight: normal;
+    color: $text-color-light;
+  }
+}
+
+.inventory-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-small;
+
+  .inventory-image {
+    flex: 0 0 150px;
+    margin-right: $spacing-medium;
+    height: 150px; // Set a fixed height
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%; // Use 100% height for the image
+      object-fit: cover; // Maintain aspect ratio and cover container
+    }
+  }
+
+
+  .inventory-info {
+    flex: 1;
+
+    h3 {
+      font-size: 20px;
+    }
+
+    p {
+      margin-bottom: $spacing-small;
+    }
+
+
+  }
+}
+
+
+.itemrecord-list {
+  list-style: none;
+  margin: 0;
+
+  .record-card {
+    margin-bottom: $spacing-small;
+    border-radius: $border-radius-small;
+    border: 1px solid #ddd;
+    display: flex;
+    padding: $spacing-small;
+    background-color: #f9f9f9;
+
+    .record-details {
+      display: flex;
+      padding: $spacing-small;
+
+      .detail {
+        display: flex;
+        align-items: center;
+        margin-right: $spacing-medium;
+
+        label {
+          margin-right: $spacing-small;
+        }
+
+        .chip {
+          padding: 5px 10px;
+          border-radius: $border-radius;
+          font-size: 14px;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        .red {
+          background-color: #ffcccc;
+          color: #cc0000;
+        }
+
+        .green {
+          background-color: #ccffcc;
+          color: #006600;
+        }
+      }
+    }
+
+    // Media query for smaller screens (e.g., mobile devices)
+    @media only screen and (max-width: 768px) {
+      flex-direction: column; // Stack items vertically
+      padding: $spacing-small;
+
+      .record-details {
+        flex-direction: column; // Stack details vertically
+        padding: $spacing-small;
+
+        .detail {
+          margin-right: 0; // Remove right margin
+          margin-bottom: $spacing-small; // Add bottom margin for spacing between details
+        }
+      }
+    }
+  }
+}
+
+

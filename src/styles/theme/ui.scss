@@ -1,0 +1,160 @@
+@import './variables.scss';
+
+// Ui Elements
+button {
+  background: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: $border-radius-small;
+  padding: $spacing-small $spacing-medium;
+  font-size: 16px;
+  cursor: pointer;
+  transition: ease-in-out .3s;
+  align-items: center;
+  display: flex;
+
+  .icon {
+    margin-right: $spacing-small;
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    background: $secondary-color; /* Gradient background on hover */
+  }
+}
+
+input[type="checkbox"] {
+  position: relative;
+  appearance: none; /* Remove default checkbox appearance */
+  width: 40px; /* Adjust the width of the switch */
+  height: 20px; /* Adjust the height of the switch */
+  background-color: $shade-dark; /* Background color when unchecked */
+  border-radius: $border-radius; /* Make it round */
+  cursor: pointer; /* Change cursor to pointer */
+  border: 1px solid #ddd;
+
+  &:checked {
+    background-color: red; /* Background color when checked */
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 1px; /* Adjust the vertical position */
+    left: 2px; /* Adjust the horizontal position */
+    width: 16px; /* Width of the switch handle */
+    height: 16px; /* Height of the switch handle */
+    background-color: #fff; /* Color of the switch handle */
+    border-radius: 50%; /* Make it round */
+    transition: ease-in-out .3s; /* Add a smooth transition effect */
+  }
+
+  &:checked::before {
+    transform: translateX(20px); /* Move the switch handle to the right when checked */
+  }
+}
+
+textarea {
+  width: 100%;
+  padding: $spacing-small;
+  border: 1px solid #ddd;
+  border-radius: $border-radius-small;
+  font-size: 16px;
+  background-color: #e0e0e0;
+  height: 100px;
+  resize: none;
+}
+
+.btn-container {
+  display: flex;
+  width: fit-content;
+
+  button {
+    margin-right: $spacing-small;
+    background-color: transparent;
+    color: $text-color-light;
+    border: none;
+    padding: $spacing-medium;
+
+    svg {
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      background-color: $shade-light;
+    }
+  }
+}
+
+.chip {
+  border-radius: $border-radius-small;
+  font-weight: bold;
+  padding: 5px 10px;
+
+  &.green {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+  }
+
+  &.red {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+  }
+
+  &.yellow {
+    background-color: rgba(255, 235, 59, 0.2);
+    color: #ffeb3b;
+  }
+
+  &.number {
+    color: #007bff;
+    font-weight: bold;
+  }
+}
+
+.panel {
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  margin-bottom: $spacing-medium;
+  width: 100%;
+  background-color: $card-background-color;
+  overflow: hidden;
+
+  .panel-header {
+    padding: $spacing-small;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .panel-content {
+    padding: $spacing-small;
+  }
+}
+
+.record-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-small;
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: $text-color;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $shade-dark;
+    }
+  }
+}
+
+// Media query for smaller screens (e.g., mobile devices)
+@media only screen and (max-width: 768px) {
+  .record-actions {
+    gap: $spacing-small; // Adjust spacing between buttons
+  }
+}

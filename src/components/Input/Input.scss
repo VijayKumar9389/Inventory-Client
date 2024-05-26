@@ -1,0 +1,49 @@
+@import "src/styles/theme/variables.scss";
+
+.search-btn {
+  position: relative;
+  padding: $spacing-small; // Add padding to make the button clickable
+  border-radius: 50%; // Make the button circular
+  color: #333;
+  cursor: pointer; // Add cursor pointer for better UX
+  transition: ease-in-out 0.3s; // Add transition for hover effect
+  display: flex; // Ensure proper alignment of SVG
+  border: none;
+  background-color: transparent; // Remove default background color
+
+  &:hover {
+    background-color: $shade-light; // Change background color on hover
+  }
+  //
+  //&:focus {
+  //  outline: none; // Remove default focus outline
+  //}
+  //
+  //svg {
+  //  margin: 0; // Center SVG inside the button
+  //}
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius-small;
+  border: 1px solid #ddd;
+  z-index: 100;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  input {
+    flex: 1; // Allow input to take remaining space
+    height: 100%;
+    padding: $spacing-small; // Use spacing variable for padding
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: #333;
+  }
+}

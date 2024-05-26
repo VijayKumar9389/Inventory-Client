@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  text-align: center;
+
+  td {
+    padding: $spacing-medium;
+    color: $text-color;
+  }
+
+  thead {
+    font-weight: bold;
+
+    th, td {
+      background-color: $shade-light;
+      font-weight: bold;
+      padding: $spacing-small;
+
+      &:first-child {
+        border-top-left-radius: $border-radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $border-radius;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: ease-in-out .3s;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+}
