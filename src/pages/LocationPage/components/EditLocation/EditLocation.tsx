@@ -1,12 +1,12 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { updateLocation } from "../../../../services/location.services.ts";
-import {LocationWithInventory, NewLocationInput} from "../../../../models/location.models.ts";
+import { updateLocation } from "../../../../services/location.services";
+import { LocationWithInventory, NewLocationInput } from "../../../../models/location.models";
 
 interface UpdateLocationProps {
     location: LocationWithInventory;
 }
 
-const UpdateLocation: React.FC<UpdateLocationProps> = ({  location }) => {
+const UpdateLocation: React.FC<UpdateLocationProps> = ({ location }) => {
     const [formData, setFormData] = useState<NewLocationInput>({
         name: '',
         description: ''
@@ -31,6 +31,7 @@ const UpdateLocation: React.FC<UpdateLocationProps> = ({  location }) => {
         e.preventDefault();
         try {
             await updateLocation(location.id, formData);
+            window.location.reload();
             // Handle success (e.g., show a success message, redirect, etc.)
         } catch (error) {
             console.error('Error updating location:', error);
@@ -39,16 +40,26 @@ const UpdateLocation: React.FC<UpdateLocationProps> = ({  location }) => {
     };
 
     return (
-        <div>
-            <h2>Update Location</h2>
+        <div className="form">
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="description">Description:</label>
-                    <textarea id="description" name="description" value={formData.description} onChange={handleChange}></textarea>
+                    <textarea
+                        id="description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                    ></textarea>
                 </div>
                 <button type="submit">Update Location</button>
             </form>

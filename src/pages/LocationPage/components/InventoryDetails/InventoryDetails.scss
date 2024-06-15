@@ -1,0 +1,65 @@
+@import '/src/styles/theme/variables.scss';
+
+// Define material design spacing and typography
+$spacing-large: 24px;
+$font-size-small: 0.875rem;
+$font-size-medium: 1rem;
+$font-size-large: 1.25rem;
+$text-color: #212121; // Darker text color for better readability
+$text-color-light: #757575; // Light text color for muted labels
+
+.inventory-details {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-medium; // Increased gap for better spacing
+  padding: $spacing-small; // Added padding for a cleaner look
+  background-color: #ffffff; // Background color for contrast
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start; // Align items to the start for better vertical alignment
+    padding: $spacing-medium; // Adjust padding for smaller screens
+  }
+
+  .inventory-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    img {
+      width: 100%; // Reduced size for a more modern look
+      max-width: 200px;
+      height: auto; // Reduced size for a more modern look
+      max-height: 200px;
+      object-fit: cover; // Ensures the image covers the space
+    }
+  }
+
+  .inventory-info {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: $spacing-small; // Padding for better spacing within the info section
+
+    h3 {
+      font-size: $font-size-large; // Large font size for headers
+      color: $text-color; // Use theme variable for text color
+      margin-bottom: $spacing-small; // Margin for spacing
+    }
+
+    p {
+      font-size: $font-size-medium; // Medium font size for paragraphs
+      margin-bottom: $spacing-small; // Consistent margin for spacing
+      color: $text-color; // Use theme variable for muted text color
+    }
+  }
+}

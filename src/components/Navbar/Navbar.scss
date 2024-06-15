@@ -2,12 +2,27 @@
 
 .navbar {
   width: 100%;
-  height: 80px;
-  padding: $spacing-medium;
+  padding: $spacing-small;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
+
+  .nav-btn {
+    display: none;
+
+    @media (max-width: $mobile-breakpoint) {
+      display: block;
+      color: $text-color;
+      background: none;
+      border: none;
+      padding: 0;
+
+      svg {
+        font-size: 1.5rem;
+      }
+    }
+  }
 
   .logo {
     display: flex;
@@ -73,6 +88,10 @@
     background: transparent;
     color: $text-color;
     font-weight: bold;
+
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
 
     &:hover {
       background-color: $shade-dark;

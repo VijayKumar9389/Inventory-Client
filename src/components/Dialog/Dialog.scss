@@ -42,29 +42,9 @@
   height: 100%; /* or any fixed height you prefer */
   overflow-y: auto; /* Allow vertical scrolling */
   padding: $spacing-medium; /* Add padding if necessary */
-
-  .input-container {
-    background-color: #e0e0e0;
-    margin-bottom: $spacing-medium;
-  }
 }
 
-.close-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: $text-color-light;
-  font-size: 24px;
-  padding: $spacing-small;
-  border-radius: $border-radius-small;
-  transition: ease-in-out .3s;
-  display: flex;
 
-  &:hover {
-    background-color: $shade-dark;
-    color: $text-color;
-  }
-}
 
 @keyframes fadeUp {
   from {

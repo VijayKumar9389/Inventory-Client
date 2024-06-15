@@ -1,74 +1,69 @@
-import './LocationPage.scss';
-import {getLocationById} from "../../services/location.services.ts";
-import {InventoryDTO, LocationWithInventory} from "../../models/location.models.ts";
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import InventoryDetails from "./components/InventoryDetails/InventoryDetails.tsx";
-import RecordList from "./components/RecordList/RecordList.tsx";
-import {createItemRecord} from "../../services/item.service.ts";
-import {NewItemRecordInput} from "../../models/item.models.ts";
-import LocationPageActions from "./components/LocationPageActions/LocationPageActions.tsx";
-import LocationPageHeading from "./components/LocationPageHeading/LocationPageHeading.tsx";
-import {FaPlus} from "react-icons/fa6";
+import React, {useState} from 'react';
+import {useParams} from 'react-router-dom';
+import LocationPageHeading from './components/LocationPageHeading/LocationPageHeading.tsx';
+import {useGetLocationById} from '../../hooks/location.hooks.ts';
+import Dialog from '../../components/Dialog/Dialog.tsx';
+import AddRecord from './components/AddRecord/AddRecord.tsx';
+import PageActions from '../../components/PageActions/PageActions.tsx';
+import LocationInventoryList from './components/LocationInventoryList/LocationInventoryList.tsx';
+import {InventoryDTO} from '../../models/location.models.ts';
 
-const LocationPage = () => {
-    const {id} = useParams();
-    const [location, setLocation] = useState<LocationWithInventory | null>(null);
+const LocationPage: React.FC = () => {
+    const {id} = useParams<{ id: string }>();
+    const {location, loading, error} = useGetLocationById(id);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
-    // Fetch location by id
-    useEffect((): void => {
-        const fetchLocation = async (): Promise<void> => {
-            if (!id) return;
-            try {
-                const locationId: number = parseInt(id);
-                const location: LocationWithInventory = await getLocationById(locationId);
-                setLocation(location);
-            } catch (error) {
-                console.error('Error fetching location:', error);
-            }
-        };
-        fetchLocation().then(() => console.log('Location fetched successfully'));
-    }, [id]);
-
-    // Create new item record
-    const handleCreateRecord = async (itemId: number, inventoryId: number): Promise<void> => {
-        if (!location) return;
-        try {
-            const newRecordInput: NewItemRecordInput = {
-                itemId: itemId,
-                locationId: location.id,
-                inventoryId: inventoryId, // Use the provided inventoryId
-            };
-            await createItemRecord(newRecordInput);
+    // Function to toggle modal
+    const toggleModal = (): void => {
+        setIsModalOpen(!isModalOpen);
+        // Reload page after closing modal to update inventory list
+        if (isModalOpen) {
             window.location.reload();
-        } catch (error) {
-            console.error('Error creating record:', error);
         }
-    }
+    };
+
+    // Function to handle search term
+    const handleSearch = (term: string): void => {
+        setSearchTerm(term);
+    };
+
+    // Function to filter inventory items based on item name
+    const filterInventory = (inventory: InventoryDTO[], term: string): InventoryDTO[] => {
+        return inventory.filter(item =>
+            item.item.name.toLowerCase().includes(term.toLowerCase())
+        );
+    };
+
+    // Filtered inventory based on search term
+    const filteredInventory: InventoryDTO[] = searchTerm ? filterInventory(location?.inventory || [], searchTerm) : location?.inventory || [];
 
     // Render loading state
-    if (!location) {
-        return <p>No location id provided</p>;
-    }
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <div className="section">
-            <LocationPageHeading location={location}/>
-            <LocationPageActions locationId={location.id}/>
-            <ul className="inventory-list">
-                {location && location.inventory.map((inventory: InventoryDTO) => (
-                    <li key={inventory.id} className="inventory-item">
-                        <InventoryDetails inventory={inventory}/>
-                        <RecordList records={inventory.records}/>
-                        <button onClick={() => handleCreateRecord(inventory.itemId, inventory.id)}>
-                            <FaPlus className="icon" />
-                            Add Record
-                        </button>
-                    </li>
-                ))}
-            </ul>
+            {location && (
+                <>
+                    <LocationPageHeading location={location}/>
+                    <PageActions onToggleModal={toggleModal}
+                                 buttonLabel="Add Item"
+                                 searchTerm={searchTerm}
+                                 onSearch={handleSearch}
+                                 placeholder="Search Inventory"
+                    />
+                    <LocationInventoryList inventory={filteredInventory}/>
+                    <Dialog
+                        isOpen={isModalOpen}
+                        toggle={toggleModal}
+                        heading="Add Item"
+                        element={<AddRecord locationId={location.id}/>}
+                    />
+                </>
+            )}
         </div>
     );
-}
+};
 
 export default LocationPage;

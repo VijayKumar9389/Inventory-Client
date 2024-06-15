@@ -1,0 +1,67 @@
+@import '../../../../styles/theme/variables';
+
+// Container for location cards
+.location-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-small; // Variable for consistent spacing
+}
+
+// Individual location card
+.location-card {
+  background: $card-background-color; // Use theme variable for background
+  border-radius: $border-radius; // Use theme variable for border radius
+  box-shadow: $box-shadow; // Use theme variable for box shadow
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: $spacing-medium; // Use theme variable for padding
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-small; // Variable for consistent spacing
+  margin-bottom: $spacing-small;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow-hover; // Use theme variable for hover box shadow
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .location-details {
+    flex: 1;
+
+    h3 {
+      font-size: 1.5rem;
+      color: $text-color; // Use theme variable for text color
+    }
+
+    p {
+      font-size: 1rem;
+      color: $text-color-light; // Use theme variable for muted text color
+      margin: 0;
+    }
+  }
+
+  .inventory-values {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-small; // Variable for consistent spacing
+  }
+
+  .value {
+    span {
+      font-weight: bold;
+      color: $text-color; // Use theme variable for text color
+    }
+
+    strong {
+      color: $shade-light; // Use theme variable for accent color
+    }
+  }
+}
+
+

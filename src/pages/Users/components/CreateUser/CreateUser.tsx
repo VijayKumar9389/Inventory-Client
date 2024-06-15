@@ -21,6 +21,7 @@ const CreateUser = () => {
         createUser(formData)
             .then((response) => {
                 console.log('User created successfully:', response);
+                window.location.reload();
             })
             .catch((error) => {
                 console.error('Error creating user:', error);

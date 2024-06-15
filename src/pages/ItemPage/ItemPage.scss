@@ -1,14 +1,21 @@
 @import 'src/styles/theme/variables.scss';
 
-.locationrecord-list {
+.inventory-list {
   list-style-type: none;
+  margin-top: $spacing-medium;
 
-  .location-record {
+  .inventory-records-list {
     margin-bottom: $spacing-medium;
     padding: $spacing-small;
     border-radius: $border-radius;
     box-shadow: $box-shadow;
-    background-color: $card-background-color;
+    border: 1px solid #ddd;
+  }
+}
 
+.item-heading {
+  h2 {
+    font-weight: normal;
+    color: $text-color-light;
   }
 }

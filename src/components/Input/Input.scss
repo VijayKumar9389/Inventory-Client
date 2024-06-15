@@ -12,16 +12,8 @@
   background-color: transparent; // Remove default background color
 
   &:hover {
-    background-color: $shade-light; // Change background color on hover
+    background-color: $shade-dark; // Change background color on hover
   }
-  //
-  //&:focus {
-  //  outline: none; // Remove default focus outline
-  //}
-  //
-  //svg {
-  //  margin: 0; // Center SVG inside the button
-  //}
 }
 
 .input-container {
@@ -30,7 +22,7 @@
   border-radius: $border-radius-small;
   border: 1px solid #ddd;
   z-index: 100;
-  background-color: #fff;
+  background-color: #f4f4f4;
   overflow: hidden;
   padding: 0;
   margin: 0;

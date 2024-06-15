@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { User } from "../../../../models/user.models.ts";
-import { getUsers } from "../../../../services/user.services.ts";
-import {FaEdit} from "react-icons/fa";
-import {MdDelete} from "react-icons/md";
+import {useEffect, useState} from "react";
+import {User} from "../../../../models/user.models.ts";
+import {getUsers} from "../../../../services/user.services.ts";
+import UserTableRow from "./UserTableRow.tsx";
 
 const UserTable = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -22,12 +21,8 @@ const UserTable = () => {
 
     return (
         <div className="panel">
-            <div className="panel-header">
-                <h2>Current Users</h2>
-            </div>
-
-            <div className="panel-content">
-                <table className="user-table">
+            <div className="table-wrapper">
+                <table>
                     <thead>
                     <tr>
                         <th>Username</th>
@@ -37,18 +32,7 @@ const UserTable = () => {
                     </thead>
                     <tbody>
                     {users.map((user: User) => (
-                        <tr key={user.id}>
-                            <td>{user.username}</td>
-                            <td>{user.isAdmin ? "True" : "False"}</td>
-                            <td className="record-actions">
-                                <button>
-                                    <FaEdit/>
-                                </button>
-                                <button>
-                                    <MdDelete/>
-                                </button>
-                            </td>
-                        </tr>
+                        <UserTableRow key={user.id} user={user} />
                     ))}
                     </tbody>
                 </table>

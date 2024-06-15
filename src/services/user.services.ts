@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { NewUserInput, TokenResponse, User } from "../models/user.models.ts";
+import {NewUserInput, TokenResponse, UpdateUserInput, User} from "../models/user.models.ts";
 
 // Get the base URL from environment variables
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -28,6 +28,30 @@ export const getUsers = async (): Promise<User[]> => {
         return response.data;
     } catch (error) {
         console.error('Error getting users:', error);
+        throw error;
+    }
+}
+
+// Delete user
+export const deleteUser = async (id: number): Promise<User> => {
+    try {
+        const endpoint: string = `${API_BASE_URL}/user/delete/${id}`;
+        const response: AxiosResponse<User> = await axios.delete(endpoint);
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        throw error;
+    }
+}
+
+// Edit user
+export const editUser = async (newUserData: UpdateUserInput): Promise<User> => {
+    try {
+        const endpoint: string = `${API_BASE_URL}/user/edit`;
+        const response: AxiosResponse<User> = await axios.put(endpoint, newUserData);
+        return response.data;
+    } catch (error) {
+        console.error('Error editing user:', error);
         throw error;
     }
 }

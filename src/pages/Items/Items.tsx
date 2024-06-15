@@ -1,56 +1,54 @@
-import {getItems} from "../../services/item.service.ts";
-import {useEffect, useState} from "react";
-import {ItemWithInventory} from "../../models/item.models.ts";
-import ItemCard from "./components/ItemCard/ItemCard.tsx";
-import Input from "../../components/Input/Input.tsx";
-import {FaPlus} from "react-icons/fa6";
-import Dialog from "../../components/Dialog/Dialog.tsx";
+import React, { useState } from 'react';
+import Dialog from '../../components/Dialog/Dialog.tsx';
+import { useGetItems } from "../../hooks/item.hooks.ts";
+import PageActions from "../../components/PageActions/PageActions.tsx";
 import CreateItem from "./components/CreateItem/CreateItem.tsx";
+import './components/ItemList/ItemList.scss';
+import ItemList from "./components/ItemList/ItemList.tsx";
+import {ItemWithInventory} from "../../models/item.models.ts";
 
-const Items = () => {
-
-    const [items, setItems] = useState<ItemWithInventory[]>([]);
+const Items: React.FC = () => {
+    const { items, loading, error } = useGetItems();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
+    // Toggle window to create item
     const toggleModal = (): void => {
         setIsModalOpen(!isModalOpen);
-    }
+    };
 
-    useEffect((): void => {
-        const fetchItems = async (): Promise<void> => {
-            try {
-                const items: ItemWithInventory[] = await getItems();
-                setItems(items);
-            } catch (error) {
-                console.error('Error getting items:', error);
-            }
-        }
-        fetchItems()
-            .then(() => console.log('Items fetched'));
-    }, []);
+    // Handle search input
+    const handleSearch = (term: string): void => {
+        setSearchTerm(term);
+    };
+
+    // Filter items based on search term
+    const filteredItems: ItemWithInventory[] = items.filter(item =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="section">
             <div className="section-heading">
                 <h1>ITEMS</h1>
             </div>
-            <div className="page-actions">
-                <Input value="" placeholder="Search items..." onChange={(): void => {
-                }}/>
-                <button onClick={() => toggleModal()}>
-                    <FaPlus className="icon"/>
-                    Add Item
-                </button>
-            </div>
-            <ul className="item-list">
-                {items.map((item: ItemWithInventory) => (
-                    <ItemCard item={item} key={item.id}/>
-                ))}
-            </ul>
-            <Dialog heading={"Create Item"}
-                    isOpen={isModalOpen}
-                    toggle={() => toggleModal()}
-                    element={<CreateItem/>}
+            <PageActions
+                onToggleModal={toggleModal}
+                buttonLabel="Add Item"
+                searchTerm={searchTerm}
+                onSearch={handleSearch}
+                placeholder="Search Items"
+            />
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
+            {!loading && !error && (
+                <ItemList items={filteredItems} />
+            )}
+            <Dialog
+                heading="Create Item"
+                isOpen={isModalOpen}
+                toggle={toggleModal}
+                element={<CreateItem />}
             />
         </div>
     );

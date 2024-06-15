@@ -1,18 +1,25 @@
-import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { LocationWithInventory } from "../../../../models/location.models.ts";
-import { deleteLocation } from "../../../../services/location.services.ts";
-import { useState } from "react";
-import Dialog from "../../../../components/Dialog/Dialog.tsx";
-import EditLocation from "../EditLocation/EditLocation.tsx";
+import React, {useState} from "react";
+import {BiArrowBack, BiDotsHorizontalRounded} from "react-icons/bi";
+import {FaEdit, FaWindowClose} from "react-icons/fa";
+import {LocationWithInventory} from "../../../../models/location.models";
+import {deleteLocation} from "../../../../services/location.services";
+import Dialog from "../../../../components/Dialog/Dialog";
+import EditLocation from "../EditLocation/EditLocation";
 import './LocationPageHeading.scss';
-import {FaWindowClose} from "react-icons/fa"; // Import SCSS file
+import {useNavigate} from "react-router-dom";
+import ConfirmationButton from "../../../../components/ConfirmationButton/ConfirmationButton.tsx";
 
-const LocationPageHeading: React.FC<{ location: LocationWithInventory }> = ({ location }) => {
+interface LocationPageHeadingProps {
+    location: LocationWithInventory;
+}
+
+const LocationPageHeading: React.FC<LocationPageHeadingProps> = ({location}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isModelOpen, setIsModelOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleModal = (): void => {
-        setIsModelOpen(!isModelOpen);
+        setIsModalOpen(!isModalOpen);
     }
 
     const toggleDropdown = (): void => {
@@ -23,37 +30,41 @@ const LocationPageHeading: React.FC<{ location: LocationWithInventory }> = ({ lo
         if (!location) return;
         try {
             await deleteLocation(location.id);
-            window.location.reload();
+            navigate(-1);
         } catch (error) {
             console.error('Error deleting location:', error);
+            window.alert('Failed to delete location')
         }
     }
 
     return (
         <div className="page-heading">
-            <div className="location-heading">
-                <h1>{location?.name}</h1>
-                <h2>{location?.description}</h2>
+            <div className="heading-wrapper">
+                <button className="action-btn" onClick={() => navigate(-1)}><BiArrowBack/></button>
+                <div>
+                    <h1>{location?.name}</h1>
+                    <h2>{location?.description}</h2>
+                </div>
             </div>
             <div className="dropdown">
-                <button className="dropdown-button" onClick={() => toggleDropdown()}>
-                    {isDropdownOpen ? <FaWindowClose /> : <BiDotsHorizontalRounded />}
-
+                <button className="dropdown-button" onClick={toggleDropdown}>
+                    {isDropdownOpen ? <FaWindowClose/> : <BiDotsHorizontalRounded/>}
                 </button>
                 <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                    <button onClick={() => handleDeleteLocation()}>
-                        Delete Location
-                    </button>
-                    <button onClick={() => toggleModal()}>
+                    <button onClick={toggleModal}>
+                        <FaEdit className="icon"/>
                         Edit Location
                     </button>
+                    <ConfirmationButton onConfirm={handleDeleteLocation}
+                                        confirmationMessage="Are you sure you want to delete this location?"
+                                        buttonText="Delete Location"/>
                 </div>
             </div>
             <Dialog
-                isOpen={isModelOpen}
+                isOpen={isModalOpen}
                 toggle={toggleModal}
                 heading={"Edit Location"}
-                element={<EditLocation location={location} />}
+                element={<EditLocation location={location}/>}
             />
         </div>
     );

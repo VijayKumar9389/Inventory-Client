@@ -3,6 +3,12 @@ export interface NewUserInput {
     password: string;
 }
 
+export interface UpdateUserInput {
+    id: number;
+    username: string;
+    password: string;
+}
+
 export interface User {
     id: number;
     username: string;
@@ -19,4 +25,15 @@ export interface TokenResponse {
 export interface AuthState {
     loggedIn: boolean;
     username: string;
+    admin: boolean;
+}
+
+export interface AuthResponse {
+    auth: boolean;
+    user: string;
+}
+
+export interface Stat {
+    label: string;
+    value: number;
 }

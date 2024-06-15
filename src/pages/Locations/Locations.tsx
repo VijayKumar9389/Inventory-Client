@@ -1,60 +1,57 @@
-import {getAllLocations} from "../../services/location.services.ts";
-import {LocationWithInventory} from "../../models/location.models.ts";
-import {useEffect, useState} from "react";
-import LocationCard from "./components/LocationCard/LocationCard.tsx";
-import Input from "../../components/Input/Input.tsx";
-import {FaPlus} from "react-icons/fa6";
-import CreateLocation from "./components/CreateLocation/CreateLocation.tsx";
+import React, { useState } from 'react';
 import Dialog from "../../components/Dialog/Dialog.tsx";
+import CreateLocation from "./components/CreateLocation/CreateLocation.tsx";
+import PageActions from "../../components/PageActions/PageActions.tsx";
+import { useGetLocations } from "../../hooks/location.hooks.ts";
+import './components/LocationCard/LocationList.scss';
+import LocationList from "./components/LocationCard/LocationList.tsx";
+import {LocationWithInventory} from "../../models/location.models.ts";
 
-const Locations = () => {
-    const [locations, setLocations] = useState<LocationWithInventory[]>([]);
+const Locations: React.FC = () => {
+    const { locations, loading, error } = useGetLocations();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
-    // Toggle modal
+    // Toggle window to create location
     const toggleModal = (): void => {
         setIsModalOpen(!isModalOpen);
-    }
+    };
 
-    // Fetch all locations
-    useEffect((): void => {
-        const fetchLocations = async (): Promise<void> => {
-            try {
-                const locations: LocationWithInventory[] = await getAllLocations();
-                setLocations(locations);
-            } catch (error) {
-                console.error('Error fetching locations:', error);
-            }
-        };
-        fetchLocations()
-            .then(() => console.log('Locations fetched'));
-    }, []);
+    // Handle search input
+    const handleSearch = (term: string): void => {
+        setSearchTerm(term);
+    };
+
+    // Filter locations based on search term
+    const filteredLocations: LocationWithInventory[] = locations.filter(location =>
+        location.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="section">
             <div className="section-heading">
                 <h1>LOCATIONS</h1>
             </div>
-            <div className="page-actions">
-                <Input value="" placeholder="Search Locations..." onChange={(): void => {
-                }}/>
-                <button onClick={() => toggleModal()}>
-                    <FaPlus className="icon"/>
-                    Add Location
-                </button>
-            </div>
-            <ul>
-                {locations.map((location: LocationWithInventory) => (
-                    <LocationCard location={location} key={location.id}/>
-                ))}
-            </ul>
-            <Dialog isOpen={isModalOpen}
-                    heading="Create Location"
-                    toggle={() => toggleModal()}
-                    element={<CreateLocation/>}
+            <PageActions
+                onToggleModal={toggleModal}
+                buttonLabel="Add Location"
+                searchTerm={searchTerm}
+                onSearch={handleSearch}
+                placeholder="Search Locations"
+            />
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
+            {!loading && !error && (
+                <LocationList locations={filteredLocations} />
+            )}
+            <Dialog
+                isOpen={isModalOpen}
+                heading="Create Location"
+                toggle={toggleModal}
+                element={<CreateLocation />}
             />
         </div>
     );
-}
+};
 
 export default Locations;

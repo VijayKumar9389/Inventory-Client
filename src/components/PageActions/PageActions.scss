@@ -1,0 +1,13 @@
+@import 'src/styles/theme/variables';
+
+.page-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: $spacing-small;
+  align-items: center;
+  margin-bottom: $spacing-medium;
+
+  @media (max-width: $mobile-breakpoint) {
+    grid-template-columns: 1fr;
+  }
+}

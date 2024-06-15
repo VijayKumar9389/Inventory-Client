@@ -1,0 +1,101 @@
+@import 'src/styles/theme/variables.scss';
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  border-bottom-left-radius: $border-radius;
+  border-top-left-radius: $border-radius;
+
+  &.open {
+    transform: translateX(0);
+    box-shadow: $box-shadow-hover;
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: $spacing-small;
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: $text-color-light;
+      font-size: 1.5rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #e74c3c;
+      }
+    }
+  }
+
+  .sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      padding: $spacing-medium;
+      color: $text-color-light;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #ddd;
+      transition: ease-in-out 0.3s;
+
+      &:hover {
+        background-color: $shade-dark;
+      }
+
+      svg {
+        margin-right: $spacing-small;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .sidebar-logout-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: $spacing-medium;
+
+    .sidebar-logout-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      svg {
+        margin-right: $spacing-small;
+      }
+
+      &:hover {
+        color: #e74c3c;
+      }
+    }
+  }
+}
+
+// Animation for slide-out sidebar
+.sidebar {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+
+  &.open {
+    transform: translateX(0);
+  }
+}

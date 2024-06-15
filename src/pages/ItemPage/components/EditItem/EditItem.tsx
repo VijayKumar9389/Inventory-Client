@@ -6,13 +6,13 @@ import { UpdateItemInput } from "../../../../models/item.models.ts";
 interface Item {
     id: number;
     name: string;
-    description: string;
+    description: string | null;
     value: number;
     image: string | null;
 }
 
 interface EditItemProps {
-    item: Item;
+    item: Item | null;
 }
 
 interface FormData {
@@ -24,14 +24,21 @@ interface FormData {
 
 const EditItem: React.FC<EditItemProps> = ({ item }) => {
     const [formData, setFormData] = useState<FormData>({
-        name: item.name,
-        description: item.description,
-        value: item.value,
+        name: "",
+        description: "",
+        value: 0,
         image: null
     });
 
     useEffect(() => {
-        // Fetch item data or initialize form data if editing an existing item
+        if (item) {
+            setFormData({
+                name: item.name,
+                description: item.description || "",
+                value: item.value,
+                image: null
+            });
+        }
     }, [item]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -62,8 +69,11 @@ const EditItem: React.FC<EditItemProps> = ({ item }) => {
                 value,
                 image // Assuming image is already a File | null type
             };
-            await updateItem(item.id, updateData);
-            // Handle success (e.g., show a success message, redirect, etc.)
+            if (item) {
+                await updateItem(item.id, updateData);
+                window.location.reload();
+                // Handle success (e.g., show a success message, redirect, etc.)
+            }
         } catch (error) {
             console.error('Error updating item:', error);
             // Handle error (e.g., show an error message)
@@ -75,9 +85,9 @@ const EditItem: React.FC<EditItemProps> = ({ item }) => {
     }
 
     return (
-        <div className="item-form-grid">
+        <div className="edit-item">
             <div className="image-container">
-                <ImageWithAlt imageName={item.image} />
+                {item.image && <ImageWithAlt imageName={item.image} />}
             </div>
             <form className="form" onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group">

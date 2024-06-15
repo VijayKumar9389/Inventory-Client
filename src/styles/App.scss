@@ -8,12 +8,51 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  background-color: #f4f4f4; /* Light background for the entire container */
 
-  @media (max-width: $mobile-breakpoint) {
-    flex-direction: column;
+  .content {
+    flex: 1;
+    background-color: $background-color;
+    padding: $spacing-small;
+    height: 100%;
+    overflow: auto;
+
+    .body {
+      background-color: #fff;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+      height: 100%;
+      overflow: scroll;
+    }
   }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-medium;
+
+  .section-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
 }
 
 

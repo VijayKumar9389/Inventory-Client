@@ -1,41 +1,50 @@
+import React, { useState } from "react";
 import './AddRecord.scss';
-import { getItems } from "../../../../services/item.service.ts";
+import { createInventory } from "../../../../services/location.services";
+import { NewInventoryInput } from "../../../../models/location.models";
+import { useGetItems } from "../../../../hooks/item.hooks.ts";
 import { ItemWithInventory } from "../../../../models/item.models.ts";
-import React, { useEffect, useState } from "react";
-import ImageWithAlt from "../../../../components/ImageWithAlt/ImageWithAlt.tsx";
-import { createInventory } from "../../../../services/location.services.ts";
-import { NewInventoryInput } from "../../../../models/location.models.ts";
+import Input from "../../../../components/Input/Input.tsx";
+import WarningMessage from "../../../../components/WarningMessage/WarningMessage.tsx";
+import AddRecordItem from "./AddRecordItem.tsx";
 
-const AddRecord: React.FC<{ locationId: number }> = ({ locationId }) => {
-    const [items, setItems] = useState<ItemWithInventory[]>([]);
+interface AddRecordProps {
+    locationId: number;
+}
 
-    useEffect((): void => {
-        const fetchItems = async (): Promise<void> => {
-            try {
-                const items: ItemWithInventory[] = await getItems();
-                console.log('Items:', items);
-                setItems(items);
-            } catch (error) {
-                console.error('Error fetching items:', error);
-                throw error;
-            }
-        };
-        fetchItems().then(() => console.log('Successfully fetched all Items'));
-    }, []);
+const AddRecord: React.FC<AddRecordProps> = ({ locationId }) => {
+    const { items, loading, error } = useGetItems();
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
-    // Filter out items that already exist in the location
-    const filteredItems: ItemWithInventory[] = items.filter(item =>
+    if (error) {
+        return <p>Error fetching items: {error}</p>;
+    }
+
+    if (loading) {
+        return <p>Loading items...</p>;
+    }
+
+    // Function to filter items based on item name
+    const filterItems = (items: ItemWithInventory[], term: string): ItemWithInventory[] => {
+        return items.filter(item =>
+            item.name.toLowerCase().includes(term.toLowerCase())
+        );
+    };
+
+    // Filtered items based on search term
+    const filteredItems: ItemWithInventory[] = searchTerm ? filterItems(items, searchTerm) : items;
+
+    // // Filter out items that already exist in the location
+    const newItems: ItemWithInventory[] = filteredItems.filter(item =>
         !item.inventory.some(inventoryItem => inventoryItem.locationId === locationId)
     );
 
     const handleAddInventory = async (itemId: number): Promise<void> => {
         try {
-            // Create new inventory
             const newInventoryInput: NewInventoryInput = {
-                locationId: locationId,
-                itemId: itemId,
+                locationId,
+                itemId,
             };
-            // Call createInventory service
             await createInventory(newInventoryInput);
             console.log('Inventory created successfully');
         } catch (error) {
@@ -43,26 +52,24 @@ const AddRecord: React.FC<{ locationId: number }> = ({ locationId }) => {
         }
     };
 
-    if (filteredItems.length === 0) {
-        return <p>No items to add</p>;
-    }
-
     return (
-        <div className="add-item-card">
-            {filteredItems.map(item => (
-                <div key={item.id} className="add-record">
-                    <div className="item-image">
-                        <ImageWithAlt imageName={item.image} />
-                    </div>
-                    <div className="item-details">
-                        <h3>{item.name}</h3>
-                        <p>{item.description}</p>
-                    </div>
-                    <button onClick={() => handleAddInventory(item.id)}>Add</button>
-                </div>
-            ))}
+        <div className="add-item-wrapper">
+            <Input value={searchTerm} onChange={setSearchTerm} placeholder={"Search Items"} />
+            <div className="add-item-grid">
+                {newItems.length === 0 ? (
+                    <WarningMessage message="No items to add." />
+                ) : (
+                    newItems.map(item => (
+                        <AddRecordItem
+                            key={item.id}
+                            item={item}
+                            handleAddInventory={handleAddInventory}
+                        />
+                    ))
+                )}
+            </div>
         </div>
     );
-}
+};
 
 export default AddRecord;

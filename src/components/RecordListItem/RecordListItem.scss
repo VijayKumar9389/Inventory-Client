@@ -1,0 +1,103 @@
+@import '../../styles/theme/variables'; // Adjust the path according to your project structure
+
+.record-card {
+  background: #fff;
+  box-shadow: $box-shadow;
+  padding: $spacing-small;
+  margin-bottom: $spacing-small;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-medium;
+  transition: box-shadow 0.2s ease;
+
+  .record-receipt {
+    justify-content: center;
+    display: flex;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover; // Ensure image covers the area without distortion
+      border-radius: $border-radius-small;
+    }
+
+    .placeholder-image {
+      width: 100px;
+      height: 100px;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: #ccc;
+    }
+  }
+
+  .record-details {
+    display: flex;
+    flex-direction: column;
+
+    .detail {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:first-child {
+        margin-bottom: $spacing-small;
+      }
+
+      label {
+        font-weight: bold;
+        color: $text-color;
+      }
+    }
+  }
+
+  .record-notes {
+    height: 150px;
+    background-color: $shade-light;
+    padding: $spacing-small;
+    border-radius: $border-radius-small;
+    overflow: hidden;
+
+    label {
+      font-weight: bold;
+      color: $text-color;
+    }
+
+    .notes-text {
+      margin-top: $spacing-small;
+      line-break: auto;
+      text-overflow: ellipsis;
+      white-space: normal;  // Change this property to allow text wrapping
+      display: block;
+      color: $text-color-light;
+    }
+  }
+
+  .record-item-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: $border-radius;
+
+    button {
+      background: $primary-color;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      padding: $spacing-small $spacing-medium;
+      margin-bottom: $spacing-small;
+      border-radius: $border-radius-small;
+      display: flex;
+      align-items: center;
+      gap: $spacing-small;
+      transition: background 0.3s, color 0.3s;
+
+      &:hover {
+        background: $secondary-color;
+        color: #fff;
+      }
+    }
+  }
+}

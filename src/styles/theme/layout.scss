@@ -1,45 +1,9 @@
 @import './variables.scss';
 
-.content {
-  flex: 1;
-  background-color: $background-color;
-  padding: $spacing-medium;
-  height: 100%;
-  overflow: auto;
-
-  .body {
-    background-color: #fff;
-    padding: $spacing-small;
-    border-radius: $border-radius;
-    box-shadow: $box-shadow;
-    height: 100%;
-    overflow: scroll;
-  }
-
-  .section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: $spacing-small;
-
-    h2 {
-      font-weight: normal;
-      color: $text-color-light;
-    }
-  }
-}
-
-.page-actions {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: $spacing-small;
-  align-items: center;
-  margin-bottom: $spacing-medium;
-}
-
-.item-form-grid {
+.edit-item {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: $spacing-medium;
 
   @media (max-width: $mobile-breakpoint) {
     grid-template-columns: 1fr;
@@ -71,23 +35,6 @@
   }
 }
 
-.item-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin: 0;
-  list-style-type: none;
-  border-radius: 8px;
-}
-
-.location-details {
-  background-color: #f8f9fa; /* Light background for contrast */
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  margin: 20px 0; /* Spacing around the component */
-}
-
 .location-header {
   margin-bottom: 20px; /* Space between header and values */
 }
@@ -103,11 +50,6 @@
   color: #666; /* Subtle color for the description */
 }
 
-.inventory-values {
-  display: flex;
-  justify-content: space-between; /* Spread the values */
-  margin-top: 10px;
-}
 
 .value {
   display: flex;
@@ -124,24 +66,25 @@
   color: #000; /* Black color for strong contrast */
 }
 
-
-.inventory-values {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $spacing-small;
-
-  .value {
-    margin-bottom: $spacing-small;
-
-    span {
-      color: $text-color-light;
-    }
-
-    strong {
-      font-weight: bold;
-    }
-  }
-}
+//.inventory-values {
+//  display: flex;
+//  flex-wrap: wrap;
+//  gap: $spacing-small;
+//  justify-content: space-between; /* Spread the values */
+//  margin-top: 10px;
+//
+//  .value {
+//    margin-bottom: $spacing-small;
+//
+//    span {
+//      color: $text-color-light;
+//    }
+//
+//    strong {
+//      font-weight: bold;
+//    }
+//  }
+//}
 
 //.stat-list {
 //  display: grid;
@@ -160,5 +103,32 @@
 //  }
 //}
 
+
+//.stat-list {
+//  display: flex;
+//  flex-direction: column;
+//  gap: 10px;
+//  margin-top: 10px;
+//
+//  @media (min-width: 768px) {
+//    flex-direction: row;
+//    margin-top: 0;
+//  }
+//
+//  .stat {
+//    text-align: center;
+//
+//    .stat-label {
+//      font-size: 0.9rem;
+//      color: #888;
+//    }
+//
+//    .stat-value {
+//      font-size: 1.2rem;
+//      font-weight: bold;
+//      color: #333;
+//    }
+//  }
+//}
 
 

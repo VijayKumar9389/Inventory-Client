@@ -1,5 +1,4 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
-import './CreateItem.scss';
 import {NewItemInput} from '../../../../models/item.models.ts';
 import {createItem} from "../../../../services/item.service.ts";
 import ImageWithAlt from "../../../../components/ImageWithAlt/ImageWithAlt.tsx";
@@ -51,7 +50,7 @@ const CreateItem = () => {
     };
 
     return (
-        <div className="item-form-grid">
+        <div className="edit-item">
             <div className="image-container">
                 {formData.image ? (
                     <img src={URL.createObjectURL(formData.image)} alt={formData.name}/>

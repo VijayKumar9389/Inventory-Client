@@ -43,7 +43,7 @@ const Dialog: React.FC<DialogProps> = ({ isOpen, toggle, element, heading }) => 
                 <div className="popup-box" onClick={handleContentClick}>
                     <div className="popup-header">
                         <h2 className="panel-label">{heading}</h2>
-                        <button onClick={toggle} className="close-button"><MdClose /></button>
+                        <button onClick={toggle} className="action-btn"><MdClose /></button>
                     </div>
                     <div className="popup-content" >
                         {element}

@@ -2,6 +2,7 @@ import UserTable from "./components/UserTable/UserTable.tsx";
 import Dialog from "../../components/Dialog/Dialog.tsx";
 import CreateUser from "./components/CreateUser/CreateUser.tsx";
 import {useState} from "react";
+import {FaPlus} from "react-icons/fa6";
 
 const Users = () => {
     const [isModelOpen, setIsModelOpen] = useState(false);
@@ -13,8 +14,10 @@ const Users = () => {
     return (
         <div className="section">
             <div className="section-heading">
-                <label>Only Admins can make changes</label>
-                <button onClick={toggleModal}>Add User</button>
+                <h1>USERS</h1>
+            </div>
+            <div className="btn-container">
+                <button onClick={toggleModal}><FaPlus className="icon"/>Add User</button>
             </div>
             <Dialog
                 heading={"Create User"}

@@ -89,7 +89,7 @@ export const deleteItem = async (itemId: number): Promise<Item> => {
 }
 
 // Get an item by ID
-export const getItemById = async (itemId: number): Promise<ItemWithInventory> => {
+export const getItemByID = async (itemId: number): Promise<ItemWithInventory> => {
     try {
         const endpoint: string = `${API_BASE_URL}/item/get/${itemId}`;
         const response: AxiosResponse<ItemWithInventory> = await axios.get(endpoint);
