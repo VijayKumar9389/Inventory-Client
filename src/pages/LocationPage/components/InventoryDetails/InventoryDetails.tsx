@@ -16,13 +16,16 @@ const InventoryDetails: React.FC<{ inventory: InventoryDTO }> = ({inventory}) =>
     const totalValue: number = value * totalItems;
     const totalMissing: number = records.filter((record) => record.missing).length;
     const totalMissingValue: number = value * totalMissing;
+    const totalValidated: number = records.filter((record) => record.receipt).length;
 
     const locationInventoryStats: Stat[] = [
         {label: 'Total Items:', value: totalItems},
         {label: 'Total Missing:', value: totalMissing},
-        {label: 'Value:', value: value},
-        {label: 'Total Value:', value: totalValue},
-        {label: 'Loss Value:', value: totalMissingValue},
+        {label: 'Total Validated:', value: totalValidated},
+        {label: 'Value:', value: `$${value}`},
+        {label: 'Total Value:', value: `$${totalValue}`},
+        {label: 'Loss Value:', value: `$${totalMissingValue}`},
+        {label: 'Remaining Value:', value: `$${totalValue - totalMissingValue}`},
     ];
 
     // Handle the create record event

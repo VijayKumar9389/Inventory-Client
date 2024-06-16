@@ -35,5 +35,5 @@ export interface AuthResponse {
 
 export interface Stat {
     label: string;
-    value: number;
+    value: number | string;
 }

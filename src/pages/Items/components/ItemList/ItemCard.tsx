@@ -12,24 +12,24 @@ const ItemCard: React.FC<{ item: ItemWithInventory }> = ({item}) => {
     const ItemCardStats: Stat[] = [
         {
             label: "Value:",
-            value: item.value
+            value: `$${item.value}`
         },
         {
             label: "In Stock:",
             value: getQuantity(item)
         },
         {
-            label: "Total Value:",
-            value: getTotalValue(item)
-        },
-        {
             label: "Missing",
             value: getMissingItems(item)
         },
         {
-            label: "validated",
+            label: "Validated:",
             value: getValidatedItems(item)
-        }
+        },
+        {
+            label: "Total Value:",
+            value: `$${getTotalValue(item)}`
+        },
     ]
 
     return (

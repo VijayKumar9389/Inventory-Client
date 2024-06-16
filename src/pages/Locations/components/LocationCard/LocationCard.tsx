@@ -9,16 +9,12 @@ const LocationCard: React.FC<{ location: LocationWithInventory }> = ({location})
     const {selectLocation} = useNavigation();
     const LocationCardStats: Stat[] = [
         {
-            label: "Unique Items",
+            label: "Total Items",
             value: location.inventory.length
         },
         {
-            label: "Total Items",
+            label: "Total Quantity",
             value: calculateTotalItems(location.inventory)
-        },
-        {
-            label: "Total Value",
-            value: calculateTotalValue(location.inventory)
         },
         {
             label: "Missing",
@@ -27,7 +23,11 @@ const LocationCard: React.FC<{ location: LocationWithInventory }> = ({location})
         {
             label: "Validated",
             value: calculateValidatedItems(location.inventory)
-        }
+        },
+        {
+            label: "Total Value",
+            value: `$${calculateTotalValue(location.inventory)}`
+        },
     ];
 
     return (

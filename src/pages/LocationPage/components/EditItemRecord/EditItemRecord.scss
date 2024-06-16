@@ -12,17 +12,7 @@
     grid-template-columns: 1fr;
   }
 
-  .record-receipt {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    img {
-      max-height: 500px; // Limiting the image height
-      border-radius: $border-radius; // Adding border radius to the image
-      box-shadow: $box-shadow; // Adding box shadow for depth
-    }
-  }
 
   //.form {
   //  p {

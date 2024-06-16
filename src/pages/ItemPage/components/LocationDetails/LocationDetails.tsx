@@ -28,9 +28,9 @@ const LocationDetails: React.FC<LocationDetailsProps> = ({inventory, itemValue})
         {label: 'Total Stock:', value: inventory.records.length},
         {label: 'Validated:', value: validatedItems.length},
         {label: 'Missing:', value: missingRecords.length},
-        {label: 'Total Value:', value: inventory.records.length * itemValue},
-        {label: 'Loss Value:', value: missingValue},
-        {label: 'Remaining Value:', value: (inventory.records.length * itemValue) - missingValue},
+        {label: 'Total Value:', value: `$${inventory.records.length * itemValue}`},
+        {label: 'Loss Value:', value: `$${missingValue}`},
+        {label: 'Remaining Value:', value: `$${(inventory.records.length * itemValue) - missingValue}`},
     ]
 
     // Handle the create record event

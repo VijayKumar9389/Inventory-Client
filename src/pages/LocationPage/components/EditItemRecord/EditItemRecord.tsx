@@ -61,9 +61,13 @@ const EditItemRecord: React.FC<{ record: ItemRecord }> = ({record}) => {
     };
 
     return (
-        <div className="edit-record">
-            <div className="record-receipt">
-                <ImageWithAlt imageName={recordImage}/>
+        <div className="form-column">
+            <div className="image-container">
+                {editedRecord.receipt ? (
+                    <img src={URL.createObjectURL(editedRecord.receipt)} alt={'Receipt'}/>
+                ) : (
+                    <ImageWithAlt imageName={recordImage}/>
+                )}
             </div>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
