@@ -1,0 +1,19 @@
+@import '../../styles/theme/variables.scss';
+
+.warning-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $shade-light; // Define a suitable background color for warning
+  color: $danger-color; // Use a suitable color variable for warning text
+  padding: $spacing-medium;
+  border-radius: $border-radius;
+  text-align: center;
+  font-weight: bold;
+
+  .warning-icon {
+    font-size: 2rem;
+    margin-bottom: $spacing-small;
+  }
+}

@@ -53,7 +53,7 @@ const ConfirmationButton: FC<ConfirmationButtonProps> = ({ buttonText, confirmat
                 <div className="confirmation-modal">
                     <div className="confirmation-content">
                         <p>{confirmationMessage}</p>
-                        <div className="button-container">
+                        <div className="confirm-btn-wrapper">
                             <button className="confirm-button" onClick={handleConfirmation}>Delete</button>
                             <button className="cancel-button" onClick={handleCancel}>Cancel</button>
                         </div>

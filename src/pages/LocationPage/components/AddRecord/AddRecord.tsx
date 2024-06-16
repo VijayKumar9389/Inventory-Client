@@ -53,7 +53,7 @@ const AddRecord: React.FC<AddRecordProps> = ({ locationId }) => {
     };
 
     return (
-        <div className="add-item-wrapper">
+        <>
             <Input value={searchTerm} onChange={setSearchTerm} placeholder={"Search Items"} />
             <div className="add-item-grid">
                 {newItems.length === 0 ? (
@@ -68,7 +68,7 @@ const AddRecord: React.FC<AddRecordProps> = ({ locationId }) => {
                     ))
                 )}
             </div>
-        </div>
+        </>
     );
 };
 

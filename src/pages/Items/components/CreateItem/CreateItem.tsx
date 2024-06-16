@@ -2,6 +2,7 @@ import {ChangeEvent, FormEvent, useState} from 'react';
 import {NewItemInput} from '../../../../models/item.models.ts';
 import {createItem} from "../../../../services/item.service.ts";
 import ImageWithAlt from "../../../../components/ImageWithAlt/ImageWithAlt.tsx";
+import {MdCreate} from "react-icons/md";
 
 const CreateItem = () => {
     const [formData, setFormData] = useState<NewItemInput>({
@@ -35,14 +36,11 @@ const CreateItem = () => {
         }));
     };
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    const handleCreateItem = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
-        console.log(formData);
         try {
             await createItem(formData);
             window.location.reload();
-            console.log(formData);
-            // Handle success, redirect, or show a message
         } catch (error) {
             // Handle error
             console.error('Error creating item:', error);
@@ -50,7 +48,7 @@ const CreateItem = () => {
     };
 
     return (
-        <div className="edit-item">
+        <div className="form-column">
             <div className="image-container">
                 {formData.image ? (
                     <img src={URL.createObjectURL(formData.image)} alt={formData.name}/>
@@ -58,7 +56,7 @@ const CreateItem = () => {
                     <ImageWithAlt imageName={""}/>
                 )}
             </div>
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleCreateItem}>
                 <div className="form-group">
                     <label htmlFor="name" className="form-label">Name:</label>
                     <input
@@ -105,7 +103,10 @@ const CreateItem = () => {
                         className="form-input"
                     />
                 </div>
-                <button type="submit" className="button">Create Item</button>
+                <div className="btn-container">
+
+                    <button type="submit" className="button"><MdCreate className="icon"/>Create Item</button>
+                </div>
             </form>
         </div>
 

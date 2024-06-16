@@ -5,13 +5,15 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 
 .dropdown-button {
   cursor: pointer;
   color: $text-color-light;
   padding: $spacing-small;
-  background-color: transparent;
+  background-color: $shade-light;
+  margin-left: auto;
 
   &:hover {
     background-color: $shade-dark;
@@ -32,13 +34,11 @@
 
 .dropdown-content button {
   display: block;
-  width: 100%;
-  text-align: left;
   border: none;
   color: $text-color;
   background-color: transparent;
+  width: 100%;
   cursor: pointer;
-  padding: $spacing-medium;
 }
 
 .dropdown-content button:hover {

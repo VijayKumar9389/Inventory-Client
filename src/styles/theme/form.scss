@@ -1,7 +1,7 @@
 @import "src/styles/theme/variables.scss";
 
+// Define the form styles
 .form {
-
   button {
     margin-top: $spacing-medium
   }
@@ -9,6 +9,10 @@
   .form-group {
     margin-bottom: $spacing-small;
     width: 100%;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
     label {
       display: block;
@@ -36,5 +40,40 @@
       min-height: 100px;
     }
   }
+}
 
+// Define the layout for the form
+.form-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: $spacing-medium;
+
+  @media (max-width: $mobile-breakpoint) {
+    grid-template-columns: 1fr;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .placeholder-image {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        font-size: max(1rem, 4rem);
+        color: $shade-dark;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 300px;
+    }
+  }
 }

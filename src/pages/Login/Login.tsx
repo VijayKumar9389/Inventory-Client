@@ -3,7 +3,7 @@ import {loginUser} from "../../services/user.services.ts";
 import {useDispatch} from "react-redux";
 import {setLogin} from "../../store/reducers/auth.reducer.ts";
 import './Login.scss';
-import {FaBoxes} from "react-icons/fa";
+import Logo from "../../assets/LogoTwo.png";
 
 const Login = () => {
 
@@ -26,10 +26,11 @@ const Login = () => {
         <div className="login-container">
             <div className="login-wrapper">
                 <h1 className="login-title">
-                    <FaBoxes/> EZ Inventory
+                    <h2 className="form-title">Please Sign In</h2>
+                    <img src={Logo} alt="Logo"/>
                 </h1>
-                    <form onSubmit={onLoginClick} className="form">
-                        <div className="form-group">
+                <form onSubmit={onLoginClick} className="form">
+                <div className="form-group">
                             <label htmlFor="username">
                                 Username
                             </label>

@@ -51,17 +51,6 @@
     flex-direction: column;
     gap: $spacing-small; // Variable for consistent spacing
   }
-
-  .value {
-    span {
-      font-weight: bold;
-      color: $text-color; // Use theme variable for text color
-    }
-
-    strong {
-      color: $shade-light; // Use theme variable for accent color
-    }
-  }
 }
 
 

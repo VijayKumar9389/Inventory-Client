@@ -32,9 +32,11 @@
     p {
       margin-bottom: $spacing-medium;
       text-align: center;
+      font-size:  1.2rem;
+      color: $text-color;
     }
 
-    .button-container {
+    .confirm-btn-wrapper {
       display: flex;
       justify-content: center;
       margin-bottom: $spacing-medium;
@@ -46,6 +48,9 @@
         border-radius: $border-radius-small;
         cursor: pointer;
         transition: background-color 0.3s;
+        width: 100%;
+        text-align: center;
+        display: block;
 
         &.cancel-button {
           background-color: $primary-color;

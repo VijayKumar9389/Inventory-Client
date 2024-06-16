@@ -1,7 +1,8 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react';
 import ImageWithAlt from "../../../../components/ImageWithAlt/ImageWithAlt.tsx";
-import { updateItem } from "../../../../services/item.service.ts";
-import { UpdateItemInput } from "../../../../models/item.models.ts";
+import {updateItem} from "../../../../services/item.service.ts";
+import {UpdateItemInput} from "../../../../models/item.models.ts";
+import {BiSave} from "react-icons/bi";
 
 interface Item {
     id: number;
@@ -22,7 +23,7 @@ interface FormData {
     image: File | null;
 }
 
-const EditItem: React.FC<EditItemProps> = ({ item }) => {
+const EditItem: React.FC<EditItemProps> = ({item}) => {
     const [formData, setFormData] = useState<FormData>({
         name: "",
         description: "",
@@ -42,7 +43,7 @@ const EditItem: React.FC<EditItemProps> = ({ item }) => {
     }, [item]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData(prevState => ({
             ...prevState,
             [name]: value
@@ -62,7 +63,7 @@ const EditItem: React.FC<EditItemProps> = ({ item }) => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         try {
-            const { name, description, value, image } = formData;
+            const {name, description, value, image} = formData;
             const updateData: UpdateItemInput = {
                 name,
                 description,
@@ -85,28 +86,31 @@ const EditItem: React.FC<EditItemProps> = ({ item }) => {
     }
 
     return (
-        <div className="edit-item">
+        <div className="form-column">
             <div className="image-container">
-                {item.image && <ImageWithAlt imageName={item.image} />}
+                {item.image && <ImageWithAlt imageName={item.image}/>}
             </div>
             <form className="form" onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description:</label>
-                    <textarea id="description" name="description" value={formData.description || ''} onChange={handleChange}></textarea>
+                    <textarea id="description" name="description" value={formData.description || ''}
+                              onChange={handleChange}></textarea>
                 </div>
                 <div className="form-group">
                     <label htmlFor="value">Value:</label>
-                    <input type="number" id="value" name="value" value={formData.value} onChange={handleChange} />
+                    <input type="number" id="value" name="value" value={formData.value} onChange={handleChange}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="image">Image:</label>
-                    <input type="file" id="image" name="image" onChange={handleImageChange} />
+                    <input type="file" id="image" name="image" onChange={handleImageChange}/>
                 </div>
-                <button type="submit">Save</button>
+                <div className="btn-container">
+                    <button type="submit"><BiSave className="icon"/>Save</button>
+                </div>
             </form>
         </div>
     );

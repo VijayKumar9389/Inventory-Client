@@ -1,12 +1,13 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { updateLocation } from "../../../../services/location.services";
-import { LocationWithInventory, NewLocationInput } from "../../../../models/location.models";
+import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react';
+import {updateLocation} from "../../../../services/location.services";
+import {LocationWithInventory, NewLocationInput} from "../../../../models/location.models";
+import {BiSave} from "react-icons/bi";
 
 interface UpdateLocationProps {
     location: LocationWithInventory;
 }
 
-const UpdateLocation: React.FC<UpdateLocationProps> = ({ location }) => {
+const UpdateLocation: React.FC<UpdateLocationProps> = ({location}) => {
     const [formData, setFormData] = useState<NewLocationInput>({
         name: '',
         description: ''
@@ -19,7 +20,7 @@ const UpdateLocation: React.FC<UpdateLocationProps> = ({ location }) => {
 
     // Handle form input changes
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData(prevState => ({
             ...prevState,
             [name]: value
@@ -61,7 +62,9 @@ const UpdateLocation: React.FC<UpdateLocationProps> = ({ location }) => {
                         onChange={handleChange}
                     ></textarea>
                 </div>
-                <button type="submit">Update Location</button>
+                <div className="btn-container">
+                    <button type="submit"><BiSave className="icon"/>Update Location</button>
+                </div>
             </form>
         </div>
     );

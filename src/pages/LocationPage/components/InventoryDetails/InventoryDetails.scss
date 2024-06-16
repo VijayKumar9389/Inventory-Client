@@ -49,16 +49,25 @@ $text-color-light: #757575; // Light text color for muted labels
     flex-direction: column;
     width: 100%;
     padding: $spacing-small; // Padding for better spacing within the info section
+    height: 100%;
 
-    h3 {
+    button {
+      width: fit-content;
+      margin-top: $spacing-medium; // Margin for spacing
+
+      @media (max-width: 768px) {
+        width: 100%; // Full width for better mobile experience
+      }
+    }
+
+    h2 {
       font-size: $font-size-large; // Large font size for headers
       color: $text-color; // Use theme variable for text color
-      margin-bottom: $spacing-small; // Margin for spacing
     }
 
     p {
       font-size: $font-size-medium; // Medium font size for paragraphs
-      margin-bottom: $spacing-small; // Consistent margin for spacing
+      margin: 0 0 $spacing-small 0; // Consistent margin for spacing
       color: $text-color; // Use theme variable for muted text color
     }
   }

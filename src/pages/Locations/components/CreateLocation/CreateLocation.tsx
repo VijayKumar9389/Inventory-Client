@@ -1,6 +1,7 @@
 import React, {useState, ChangeEvent, FormEvent} from 'react';
 import {createLocation} from "../../../../services/location.services.ts";
 import {NewLocationInput} from "../../../../models/location.models.ts";
+import {MdCreate} from "react-icons/md";
 
 interface FormData {
     name: string;
@@ -62,7 +63,9 @@ const CreateLocation: React.FC = () => {
                     className="form-textarea"
                 />
             </div>
-            <button type="submit" className="button">Create Location</button>
+            <div className="btn-container">
+                <button type="submit" className="button"><MdCreate className="icon"/>Create Location</button>
+            </div>
         </form>
     );
 };
