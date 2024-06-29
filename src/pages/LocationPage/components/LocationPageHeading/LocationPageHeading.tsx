@@ -5,7 +5,6 @@ import {LocationWithInventory} from "../../../../models/location.models";
 import {deleteLocation} from "../../../../services/location.services";
 import Dialog from "../../../../components/Dialog/Dialog";
 import EditLocation from "../EditLocation/EditLocation";
-import './LocationPageHeading.scss';
 import {useNavigate} from "react-router-dom";
 import ConfirmationButton from "../../../../components/ConfirmationButton/ConfirmationButton.tsx";
 
@@ -33,38 +32,37 @@ const LocationPageHeading: React.FC<LocationPageHeadingProps> = ({location}) => 
             navigate(-1);
         } catch (error) {
             console.error('Error deleting location:', error);
-            window.alert('Failed to delete location')
+            window.alert('Cannot delete location associated with inventory records.');
         }
     }
 
     return (
         <div className="page-heading">
-            <div className="heading-wrapper">
-                <button className="action-btn" onClick={() => navigate(-1)}><BiArrowBack/></button>
-                <div>
-                    <h1>{location?.name}</h1>
-                    <h2>{location?.description}</h2>
-                </div>
-            </div>
-            <div className="dropdown">
-                <button className="dropdown-button" onClick={toggleDropdown}>
-                    {isDropdownOpen ? <FaWindowClose/> : <BiDotsHorizontalRounded/>}
+            <button className="action-btn" onClick={() => navigate(-1)}>
+                <BiArrowBack />
+            </button>
+            <h1>{location?.name}</h1>
+            <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
+                <button className="action-btn" onClick={toggleDropdown}>
+                    {isDropdownOpen ? <FaWindowClose /> : <BiDotsHorizontalRounded />}
                 </button>
                 <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
                     <button onClick={toggleModal}>
-                        <FaEdit className="icon"/>
+                        <FaEdit className="icon" />
                         Edit Location
                     </button>
-                    <ConfirmationButton onConfirm={handleDeleteLocation}
-                                        confirmationMessage="Are you sure you want to delete this location?"
-                                        buttonText="Delete Location"/>
+                    <ConfirmationButton
+                        onConfirm={handleDeleteLocation}
+                        confirmationMessage={`Are you sure you want to delete ${location.name}?`}
+                        buttonText="Delete Location"
+                    />
                 </div>
             </div>
             <Dialog
                 isOpen={isModalOpen}
                 toggle={toggleModal}
-                heading={"Edit Location"}
-                element={<EditLocation location={location}/>}
+                heading="Edit Location"
+                element={<EditLocation location={location} />}
             />
         </div>
     );

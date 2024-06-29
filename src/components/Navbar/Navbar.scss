@@ -1,113 +1,120 @@
-@import '../../styles/theme/variables';
+@import 'src/styles/theme/variables.scss';
 
 .navbar {
-  width: 100%;
-  padding: $spacing-small;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #ddd;
-
-  .nav-btn {
-    display: none;
-
-    @media (max-width: $mobile-breakpoint) {
-      display: block;
-      color: $text-color;
-      background: none;
-      border: none;
-      padding: 0;
-
-      svg {
-        font-size: 1.5rem;
-      }
-    }
-  }
+  padding: $spacing-small;
+  background-color: $surface-color;
+  box-shadow: $box-shadow-medium;
+  color: $text-color;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
 
   .logo {
     display: flex;
     align-items: center;
 
-    img {
-      width: 40px; // Adjust the width to make the logo smaller
-      height: auto; // Maintain aspect ratio
-      margin-right: 10px; // Add some space between the logo and the text
+    svg {
+      font-size: 2.5rem;
+      margin-right: $spacing-small;
     }
 
     h1 {
-      font-size: 1.5rem; // Adjust the font size of the text
-      font-weight: bold; // Add font weight if needed
+      font-size: $font-size-xlarge;
+      margin: 0;
     }
   }
 
   .menu-list {
-    display: flex;
-    align-items: center;
-
-    @media (max-width: $mobile-breakpoint) {
-      display: none;
-    }
-  }
-
-  .menu-item {
-    padding: $spacing-small;
-    margin-right: $spacing-small;
-    border-radius: $border-radius-small;
+    display: none;
+    width: 100%;
     list-style: none;
-    transition: ease-in-out .3s;
-    cursor: pointer;
-    text-decoration: none;
+    margin: 0;
 
-    display: flex;
-    align-items: center;
-
-    svg {
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: $spacing-medium;
       color: $text-color;
-      font-size: 1.2rem;
-      margin-right: $spacing-small;
-    }
-
-    a {
       text-decoration: none;
-      color: $text-color-light;
-      font-weight: bold;
-      display: block;
       transition: ease-in-out .3s;
-    }
+      border-radius: $border-radius-small;
 
-    &:hover {
-      background-color: $shade-dark; /* Darken the color on hover */
+      svg {
+        margin-right: $spacing-small;
+        font-size: 1.2rem;
+      }
 
-      a {
-        color: $text-color;
+      &:hover {
+        color: $surface-color;
+        background-color: $primary-color;
+        box-shadow: $box-shadow-light;
+      }
+
+      &.selected {
+        text-decoration: underline;
+      }
+
+      span {
+        font-size: $font-size-medium;
       }
     }
   }
 
-  .logout-btn {
-    background: transparent;
-    color: $text-color;
-    font-weight: bold;
 
-    @media (max-width: $mobile-breakpoint) {
-      display: none;
-    }
+  .nav-btn {
+    display: block;
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: $text-color-light;
+    font-size: $font-size-xlarge;
+    cursor: pointer;
 
     &:hover {
-      background-color: $shade-dark;
-    }
-
-    .icon {
-      font-size: 1rem;
-      margin-left: $spacing-small;
-      margin-right: 0;
+      color: $text-color;
     }
   }
 
-  @media (max-width: 768px) {
-    width: 100%; /* Take full width on smaller screens */
-    .menu-item {
-      margin-bottom: 5px; /* Reduce margin on smaller screens */
+}
+
+// Media Queries for Mobile Responsiveness
+@media (max-width: $breakpoint-md) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $spacing-small;
+
+    .logo {
+      margin-bottom: $spacing-small;
     }
+
+    .menu-list {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+
+      .menu-item {
+        margin-left: 0;
+        padding: $spacing-small 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .user-options {
+      display: none;
+    }
+
+    .nav-btn {
+      display: block;
+      margin-left: auto;
+    }
+  }
+
+  .navbar.show-menu .menu-list {
+    display: flex;
   }
 }

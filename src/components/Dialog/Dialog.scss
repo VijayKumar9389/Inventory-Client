@@ -2,24 +2,28 @@
 
 .popup-overlay {
   position: fixed;
-  z-index: 1000;
+  z-index: $z-index-modal;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.5); // Semi-transparent background for overlay
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn $transition-medium;
 }
 
 .popup-box {
-  background-color: #fff;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 100%;
-  animation: fadeUp 0.3s ease;
+  background-color: $surface-color;
+  box-shadow: $box-shadow-dark;
+  width: 90%; // Responsive width
+  height: 80%; // Responsive height
+  animation: fadeUp $transition-medium;
   display: grid;
   grid-template-rows: auto 1fr;
+  border-radius: $border-radius-medium; // Rounded corners
+  overflow: hidden; // Ensure content doesn't overflow
 }
 
 .popup-header {
@@ -27,25 +31,35 @@
   justify-content: space-between;
   align-items: center;
   padding: $spacing-medium;
-  box-shadow: $box-shadow;
-  z-index: 200;
+  border-bottom: 1px solid $border-color;
   position: relative;
-}
+  z-index: $z-index-tooltip;
 
-.panel-label {
-  font-size: 18px;
-  color: $text-color;
-  font-weight: bold;
-  margin: 0;
+  .panel-label {
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+    margin: 0;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: $font-size-xlarge;
+    cursor: pointer;
+    transition: color $transition-medium;
+
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
 }
 
 .popup-content {
-  height: 100%; /* or any fixed height you prefer */
-  overflow-y: auto; /* Allow vertical scrolling */
-  padding: $spacing-medium; /* Add padding if necessary */
+  height: 100%; // Flexible height
+  overflow-y: auto; // Allow vertical scrolling
+  padding: $spacing-medium; // Add padding
 }
-
-
 
 @keyframes fadeUp {
   from {
@@ -55,5 +69,40 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Media Queries for Mobile Responsiveness
+@media (max-width: $breakpoint-md) {
+  .popup-box {
+    width: 95%;
+    height: 85%;
+    max-width: none;
+    max-height: none;
+  }
+
+  .popup-header {
+    padding: $spacing-small;
+
+    .panel-label {
+      font-size: $font-size-medium;
+    }
+
+    .close-button {
+      font-size: $font-size-large;
+    }
+  }
+
+  .popup-content {
+    padding: $spacing-small;
   }
 }

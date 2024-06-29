@@ -1,12 +1,41 @@
 @import 'src/styles/theme/variables';
 
-.page-actions {
+.input-wrapper {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: $spacing-small;
   align-items: center;
+  width: 100%;
+}
 
-  @media (max-width: $mobile-breakpoint) {
+.section-heading {
+  font-size: $font-size-large;
+  font-weight: $font-weight-bold;
+  color: $text-color;
+  padding: $spacing-medium 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  border-bottom: 1px solid $border-color; // Using border color variable
+
+  h1 {
+    text-transform: uppercase;
+  }
+
+  .page-actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: $spacing-small;
+    align-items: center;
+    width: 100%;
+
+    @media (max-width: $breakpoint-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
     grid-template-columns: 1fr;
   }
 }
+

@@ -5,56 +5,64 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #ff6347, #8a2be2);
+  background: linear-gradient(135deg, $primary-color, $primary-color-dark);
+  padding: $spacing-medium;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-small;
+  }
 }
 
-// Login Container
 .login-wrapper {
   background: white;
-  padding: 40px;
-  border-radius: 8px;
+  padding: $spacing-large;
+  border-radius: $border-radius-large;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 400px;
-  width: 100%;
+  width: 40%;
+  max-width: 500px;
   margin: auto;
-}
 
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    padding: $spacing-medium;
+    border-radius: $border-radius-small;
+  }
+
+  .form-btn {
+    margin-top: $spacing-medium;
+    width: 100%;
+  }
+}
 
 .login-title {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: $spacing-medium;
 
-    h2 {
-        margin: 0;
-        font-size: 2rem;
-        color: $primary-color;
-      text-align: left;
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: normal;
+    color: $text-color-light;
+    text-align: left;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 1.5rem;
     }
+  }
 
   img {
     width: auto;
     max-height: 150px;
-    // Add additional styles for the image if needed
+    margin-top: $spacing-small;
+
+    @media (max-width: $breakpoint-md) {
+      max-height: 100px;
+    }
   }
 }
 
-
-.form-btn {
-  background-color: $primary-color;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
-
-.form-btn:hover {
-  background-color: darken($primary-color, 10%);
-}
 

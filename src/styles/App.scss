@@ -3,24 +3,25 @@
 @import 'theme/table.scss';
 @import 'theme/ui.scss';
 @import 'theme/typography.scss';
+@import 'theme/heading.scss';
+@import 'theme/details.scss';
 
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f4f4f4; /* Light background for the entire container */
+  background-color: $shade-light; // Light background for the entire container
 
   .content {
     flex: 1;
     background-color: $background-color;
-    padding: $spacing-small;
     height: 100%;
     overflow: auto;
 
     .body {
-      background-color: #fff;
-      border-radius: $border-radius;
-      box-shadow: $box-shadow;
+      background-color: $surface-color;
+      border-radius: $border-radius-medium;
+      box-shadow: $box-shadow-medium;
       height: 100%;
       overflow: scroll;
     }
@@ -28,34 +29,21 @@
 }
 
 .section {
+  padding: $spacing-medium;
   display: flex;
   flex-direction: column;
-  gap: $spacing-medium;
-
-  .section-heading {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: $text-color;
-    display: flex;
-    justify-content: space-between;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
+  gap: $spacing-large;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .loading,
 .error {
   text-align: center;
-  font-size: 1.2rem;
-  color: #666;
+  font-size: $font-size-medium;
+  color: $text-color-light;
 }
-
-
-
-
 
 
 

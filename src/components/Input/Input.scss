@@ -2,17 +2,17 @@
 
 .search-btn {
   position: relative;
-  padding: $spacing-small; // Add padding to make the button clickable
-  border-radius: 50%; // Make the button circular
-  color: #333;
-  cursor: pointer; // Add cursor pointer for better UX
-  transition: ease-in-out 0.3s; // Add transition for hover effect
-  display: flex; // Ensure proper alignment of SVG
+  padding: $spacing-small; // Using spacing variable for padding
+  border-radius: 50%; // Making the button circular
+  color: $text-color; // Using text color variable
+  cursor: pointer; // Adding cursor pointer for better UX
+  transition: ease-in-out $transition-medium; // Using transition variable for hover effect
+  display: flex; // Ensuring proper alignment of SVG
   border: none;
-  background-color: transparent; // Remove default background color
+  background-color: transparent; // Removing default background color
 
   &:hover {
-    background-color: $shade-dark; // Change background color on hover
+    background-color: $shade-dark; // Changing background color on hover
   }
 }
 
@@ -20,22 +20,22 @@
   display: flex;
   align-items: center;
   border-radius: $border-radius-small;
-  border: 1px solid #ddd;
+  border: 1px solid $border-color; // Using border color variable
   z-index: 100;
-  background-color: #f4f4f4;
+  background-color: #fff; // Using background color variable
   overflow: hidden;
   padding: 0;
   margin: 0;
   width: 100%;
 
   input {
-    flex: 1; // Allow input to take remaining space
+    flex: 1; // Allowing input to take remaining space
     height: 100%;
-    padding: $spacing-small; // Use spacing variable for padding
-    font-size: 16px;
+    padding: $spacing-small; // Using spacing variable for padding
+    font-size: $font-size-medium; // Using font size variable
     outline: none;
     border: none;
     background-color: transparent;
-    color: #333;
+    color: $text-color; // Using text color variable
   }
 }

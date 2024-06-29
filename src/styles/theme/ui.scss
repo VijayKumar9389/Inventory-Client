@@ -3,66 +3,23 @@
 // Ui Elements
 button {
   background: $primary-color;
-  color: #fff;
+  color: $surface-color;
   border: none;
   border-radius: $border-radius-small;
   padding: $spacing-small $spacing-medium;
-  font-size: 16px;
+  font-size: $font-size-medium;
   cursor: pointer;
-  transition: ease-in-out .3s;
+  transition: $transition-medium;
   align-items: center;
   display: flex;
+  gap: $spacing-small;
 
   .icon {
-    margin-right: $spacing-small;
     font-size: 1.2rem;
   }
 
   &:hover {
-    background: $secondary-color; /* Gradient background on hover */
-  }
-}
-
-// Back and Cancel buttons
-.action-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: $text-color-light;
-  font-size: 24px;
-  padding: $spacing-small;
-  border-radius: $border-radius-small;
-  transition: ease-in-out .3s;
-  display: flex;
-  background-color: $shade-light;
-
-  &:hover {
-    background-color: $shade-dark;
-    color: $text-color;
-  }
-}
-
-// Display the inventory list of records for a item and location
-.inventory-list {
-  list-style-type: none;
-
-  .inventory-records-list {
-    margin-bottom: $spacing-medium;
-    padding: $spacing-small;
-    border-radius: $border-radius;
-    box-shadow: $box-shadow;
-    border: 1px solid #ddd;
-
-    .inventory-records {
-      list-style-type: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: $spacing-small;
-      padding: $spacing-small;
-      background-color: #f9f9f9;
-      border-radius: $border-radius-small;
-      border: 1px solid #ddd;
-    }
+    background: $primary-color-dark; /* Darker primary color on hover */
   }
 }
 
@@ -72,12 +29,12 @@ input[type="checkbox"] {
   width: 40px; /* Adjust the width of the switch */
   height: 20px; /* Adjust the height of the switch */
   background-color: $shade-dark; /* Background color when unchecked */
-  border-radius: $border-radius; /* Make it round */
+  border-radius: $border-radius-small; /* Make it round */
   cursor: pointer; /* Change cursor to pointer */
-  border: 1px solid #ddd;
+  border: $border-width-thin solid $border-color;
 
   &:checked {
-    background-color: red; /* Background color when checked */
+    background-color: $primary-color; /* Background color when checked */
   }
 
   &::before {
@@ -87,9 +44,9 @@ input[type="checkbox"] {
     left: 2px; /* Adjust the horizontal position */
     width: 16px; /* Width of the switch handle */
     height: 16px; /* Height of the switch handle */
-    background-color: #fff; /* Color of the switch handle */
+    background-color: $surface-color; /* Color of the switch handle */
     border-radius: 50%; /* Make it round */
-    transition: ease-in-out .3s; /* Add a smooth transition effect */
+    transition: $transition-medium; /* Add a smooth transition effect */
   }
 
   &:checked::before {
@@ -100,10 +57,10 @@ input[type="checkbox"] {
 textarea {
   width: 100%;
   padding: $spacing-small;
-  border: 1px solid #ddd;
+  border: $border-width-thin solid $border-color;
   border-radius: $border-radius-small;
-  font-size: 16px;
-  background-color: #e0e0e0;
+  font-size: $font-size-medium;
+  background-color: $shade-light;
   height: 100px;
   resize: none;
 }
@@ -113,7 +70,7 @@ textarea {
   width: 100%;
   justify-content: flex-end;
 
-  @media (max-width: $mobile-breakpoint) {
+  @media (max-width: $breakpoint-md) {
     button {
       width: 100%;
     }
@@ -121,43 +78,37 @@ textarea {
 }
 
 .chip {
-  border-radius: $border-radius-small;
-  font-weight: bold;
+  border-radius: 50px;
+  font-weight: $font-weight-bold;
   padding: 5px 10px;
+  display: flex;
+  width: fit-content;
 
   &.green {
-    background-color: rgba(76, 175, 80, 0.2);
-    color: #4caf50;
+    background-color: rgba($success-color, 0.2);
+    color: $success-color;
   }
 
   &.red {
-    background-color: rgba(244, 67, 54, 0.2);
-    color: #f44336;
+    background-color: rgba($danger-color, 0.2);
+    color: $danger-color;
   }
 
   &.yellow {
-    background-color: rgba(255, 235, 59, 0.2);
-    color: #ffeb3b;
-  }
-
-  &.number {
-    color: #007bff;
-    font-weight: bold;
+    background-color: rgba($warning-color, 0.2);
+    color: $warning-color;
   }
 }
 
-.panel {
-  box-shadow: $box-shadow;
-  border-radius: $border-radius;
-  margin-bottom: $spacing-medium;
-  width: 100%;
-  background-color: $card-background-color;
-  overflow: hidden;
-  border: 1px solid #ddd;
+.table-wrapper {
+  overflow-x: auto;
+  box-shadow: $box-shadow-light;
+  border-radius: $border-radius-small;
+  background-color: $surface-color;
+}
 
-  .table-wrapper {
-    overflow-x: auto;
-  }
+.record-wrapper {
+  overflow-x: auto;
 }
 
 .record-actions {
@@ -171,16 +122,16 @@ textarea {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 16px; /* Adjust padding as needed */
+    padding: $spacing-small $spacing-medium; /* Adjust padding as needed */
     border: none;
     background-color: $primary-color;
-    color: #fff;
-    border-radius: 4px;
+    color: $surface-color;
+    border-radius: $border-radius-small;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color $transition-medium;
 
     &:hover {
-      background-color: darken($primary-color, 10%);
+      background-color: $primary-color-dark;
     }
 
     .icon {
@@ -189,41 +140,16 @@ textarea {
   }
 }
 
-// Heading for the sub pages
-.page-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: $spacing-medium; // Add some padding for better spacing
-
-  .heading-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $spacing-small;
-
-    // Adjusting flex properties for responsiveness
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  h2 {
-    font-weight: normal;
-    color: $text-color-light;
-    margin: 0; // Remove any default margin
-
-    // Responsive font size adjustment
-    @media (max-width: 768px) {
-      font-size: 1.5rem;
-    }
-  }
-
-  // Additional responsive adjustments
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+// Inventory list for Items and Locations
+.inventory-list {
 }
 
+.inventory-records-list {
+  list-style-type: none;
+  background-color: $surface-color;
+  border: $border-width-thin solid $border-color;
+  //box-shadow: $box-shadow-light;
+  padding: $spacing-small;
+  margin-bottom: $spacing-medium;
+  border-radius: $border-radius-small;
+}

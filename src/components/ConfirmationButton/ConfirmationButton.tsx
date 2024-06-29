@@ -1,6 +1,7 @@
 import {useState, FC, useEffect} from 'react';
 import './ConfirmationButton.scss';
 import {MdDelete} from "react-icons/md";
+import {TiCancel} from "react-icons/ti";
 
 interface ConfirmationButtonProps {
     buttonText: string;
@@ -54,8 +55,8 @@ const ConfirmationButton: FC<ConfirmationButtonProps> = ({ buttonText, confirmat
                     <div className="confirmation-content">
                         <p>{confirmationMessage}</p>
                         <div className="confirm-btn-wrapper">
-                            <button className="confirm-button" onClick={handleConfirmation}>Delete</button>
-                            <button className="cancel-button" onClick={handleCancel}>Cancel</button>
+                            <button className="confirm-button" onClick={handleConfirmation}><MdDelete className="icon" />Delete</button>
+                            <button className="cancel-button" onClick={handleCancel}><TiCancel className="icon" />Cancel</button>
                         </div>
                     </div>
                 </div>

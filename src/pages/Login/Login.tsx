@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {setLogin} from "../../store/reducers/auth.reducer.ts";
 import './Login.scss';
 import Logo from "../../assets/LogoTwo.png";
+import {MdLogin} from "react-icons/md";
 
 const Login = () => {
 
@@ -59,6 +60,7 @@ const Login = () => {
                             />
                         </div>
                         <button type="submit" className="form-btn">
+                            <MdLogin className="icon" />
                             Login
                         </button>
                     </form>

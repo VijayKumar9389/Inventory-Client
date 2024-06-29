@@ -1,0 +1,139 @@
+@import "src/styles/theme/variables.scss";
+
+// Define material design spacing and typography
+
+$font-size-small: 0.875rem;
+$font-size-medium: 1rem;
+$font-size-large: 1.25rem;
+$text-color: #212121; // Darker text color for better readability
+$text-color-light: #757575; // Light text color for muted labels
+
+// For Location and Inventory Details components
+.details-container {
+  display: flex;
+  align-items: center;
+  gap: $spacing-medium; // Variable for consistent spacing
+  flex-wrap: wrap;
+  margin-bottom: $spacing-small; // Remove if you want consistent margin with image
+  width: 100%;
+
+  .details-image{
+    width: 100px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  .details-icon {
+    width: 100px;
+
+    svg {
+      height: 80px;
+      width: 80px;
+      color: #fff;
+      background-color: $primary-color;
+      padding: 20px;
+      border-radius: 50%;
+    }
+  }
+
+  .details-icon {
+    font-size: 2.5rem; // Can be adjusted for icon size preference
+    color: #007bff;
+    display: flex;
+
+    svg {
+      margin: auto;
+    }
+  }
+
+
+  .details-info {
+    text-align: left;
+    flex: 2;
+
+    h2 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    p {
+      font-size: 16px;
+      color: #666;
+    }
+  }
+
+  .stat-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    flex: 2;
+    gap: $spacing-small;
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: #999;
+      }
+
+      .stat-value {
+        font-size: 16px;
+        color: #333;
+
+        strong {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+// Media Queries for Mobile Responsiveness
+@media (max-width: 768px) {
+  .details-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: $spacing-small;
+
+    .details-image, .details-info, .stat-list {
+      max-width: 100%;
+    }
+
+    .details-info {
+      width: 100%;
+      padding: $spacing-small;
+
+      h2 {
+        font-size: $font-size-large;
+      }
+    }
+
+    p {
+      font-size: $font-size-medium;
+    }
+  }
+
+  .stat-list {
+    grid-template-columns: 1fr;
+    gap: $spacing-small;
+  }
+
+  .details-icon {
+    font-size: 2rem;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+}
+

@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Dialog from '../../components/Dialog/Dialog.tsx';
-import { useGetItems } from "../../hooks/item.hooks.ts";
+import {useGetItems} from "../../hooks/item.hooks.ts";
 import PageActions from "../../components/PageActions/PageActions.tsx";
 import CreateItem from "./components/CreateItem/CreateItem.tsx";
-import './components/ItemList/ItemList.scss';
-import ItemList from "./components/ItemList/ItemList.tsx";
+import ItemTable from "./components/ItemTable/ItemTable.tsx";
 import {ItemWithInventory} from "../../models/item.models.ts";
 
 const Items: React.FC = () => {
-    const { items, loading, error } = useGetItems();
+    const {items, loading, error} = useGetItems();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -29,26 +28,25 @@ const Items: React.FC = () => {
 
     return (
         <div className="section">
-            <div className="section-heading">
-                <h1>ITEMS</h1>
-            </div>
             <PageActions
                 onToggleModal={toggleModal}
                 buttonLabel="Add Item"
                 searchTerm={searchTerm}
                 onSearch={handleSearch}
                 placeholder="Search Items"
+                heading="Items"
             />
+
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {!loading && !error && (
-                <ItemList items={filteredItems} />
+                <ItemTable items={filteredItems}/>
             )}
             <Dialog
                 heading="Create Item"
                 isOpen={isModalOpen}
                 toggle={toggleModal}
-                element={<CreateItem />}
+                element={<CreateItem/>}
             />
         </div>
     );

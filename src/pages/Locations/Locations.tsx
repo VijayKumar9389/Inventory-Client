@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Dialog from "../../components/Dialog/Dialog.tsx";
 import CreateLocation from "./components/CreateLocation/CreateLocation.tsx";
 import PageActions from "../../components/PageActions/PageActions.tsx";
-import { useGetLocations } from "../../hooks/location.hooks.ts";
-import './components/LocationCard/LocationList.scss';
-import LocationList from "./components/LocationCard/LocationList.tsx";
+import {useGetLocations} from "../../hooks/location.hooks.ts";
+import LocationTable from "./components/LocationTable/LocationTable.tsx";
 import {LocationWithInventory} from "../../models/location.models.ts";
 
 const Locations: React.FC = () => {
-    const { locations, loading, error } = useGetLocations();
+    const {locations, loading, error} = useGetLocations();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -29,26 +28,26 @@ const Locations: React.FC = () => {
 
     return (
         <div className="section">
-            <div className="section-heading">
-                <h1>LOCATIONS</h1>
-            </div>
             <PageActions
                 onToggleModal={toggleModal}
                 buttonLabel="Add Location"
                 searchTerm={searchTerm}
                 onSearch={handleSearch}
                 placeholder="Search Locations"
+                heading="Locations"
             />
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {!loading && !error && (
-                <LocationList locations={filteredLocations} />
+                <div className="section-content">
+                <LocationTable locations={filteredLocations}/>
+                </div>
             )}
             <Dialog
                 isOpen={isModalOpen}
                 heading="Create Location"
                 toggle={toggleModal}
-                element={<CreateLocation />}
+                element={<CreateLocation/>}
             />
         </div>
     );

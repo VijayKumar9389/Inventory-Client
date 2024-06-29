@@ -5,15 +5,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: $shade-light; // Define a suitable background color for warning
-  color: $danger-color; // Use a suitable color variable for warning text
-  padding: $spacing-medium;
-  border-radius: $border-radius;
+  color: $danger-color; // Use the danger color for the text
+  padding: $spacing-medium; // Use the medium spacing for padding
+  border-radius: $border-radius-medium; // Use the medium border radius
   text-align: center;
-  font-weight: bold;
+  font-weight: $font-weight-bold; // Use the bold font weight
 
   .warning-icon {
     font-size: 2rem;
-    margin-bottom: $spacing-small;
+    margin-bottom: $spacing-small; // Use the small spacing for the bottom margin
   }
 }

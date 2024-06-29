@@ -4,9 +4,10 @@ import LocationPageHeading from './components/LocationPageHeading/LocationPageHe
 import {useGetLocationById} from '../../hooks/location.hooks.ts';
 import Dialog from '../../components/Dialog/Dialog.tsx';
 import AddRecord from './components/AddRecord/AddRecord.tsx';
-import PageActions from '../../components/PageActions/PageActions.tsx';
 import LocationInventoryList from './components/LocationInventoryList/LocationInventoryList.tsx';
 import {InventoryDTO} from '../../models/location.models.ts';
+import Input from "../../components/Input/Input.tsx";
+import {FaPlus} from "react-icons/fa6";
 
 const LocationPage: React.FC = () => {
     const {id} = useParams<{ id: string }>();
@@ -47,12 +48,13 @@ const LocationPage: React.FC = () => {
             {location && (
                 <>
                     <LocationPageHeading location={location}/>
-                    <PageActions onToggleModal={toggleModal}
-                                 buttonLabel="Add Item"
-                                 searchTerm={searchTerm}
-                                 onSearch={handleSearch}
-                                 placeholder="Search Inventory"
-                    />
+                    <div className="input-wrapper">
+                        <Input value={searchTerm} placeholder={"Search Items"} onChange={(e) => handleSearch(e)}/>
+                        <button onClick={toggleModal}>
+                            <FaPlus className="icon"/>
+                            Add Item
+                        </button>
+                    </div>
                     <LocationInventoryList inventory={filteredInventory}/>
                     <Dialog
                         isOpen={isModalOpen}

@@ -1,0 +1,89 @@
+@import 'src/styles/theme/variables.scss';
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $surface-color;
+  border: 1px solid #ddd;
+  font-size: 1.5rem;
+  color: $text-color-light;
+  cursor: pointer;
+  padding: $spacing-small;
+  transition: background-color .3s ease-in-out, color .3s ease-in-out, box-shadow .3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: darken($surface-color, 10%);
+    color: $text-color;
+  }
+}
+
+
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-medium 0;
+  border-bottom: 1px solid $border-color; // Using border color variable
+
+  h1 {
+    font-size: 1.75rem;
+    margin: 0;
+    color: $text-color; // Using text color variable
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+
+
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%; /* Ensure dropdown content appears below button */
+      background-color: $background-color; // Using background color variable
+      min-width: 200px;
+      box-shadow: $box-shadow-medium; // Using box shadow variable
+      z-index: $z-index-dropdown; // Using z-index variable
+
+      button {
+        width: 100%;
+        border-radius: 0;
+        padding: $spacing-medium;
+      }
+    }
+
+    &.show .dropdown-content {
+      display: block;
+    }
+  }
+}
+
+// Media Queries for Mobile Responsiveness
+@media (max-width: $breakpoint-md) {
+  .page-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+
+    .action-btn {
+      align-self: flex-start;
+      margin-bottom: $spacing-small;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .dropdown {
+      align-self: flex-end;
+      margin-top: $spacing-small;
+    }
+  }
+}

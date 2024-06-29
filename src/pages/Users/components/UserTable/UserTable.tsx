@@ -22,7 +22,7 @@ const UserTable = () => {
     return (
         <div className="panel">
             <div className="table-wrapper">
-                <table>
+                <table className="table">
                     <thead>
                     <tr>
                         <th>Username</th>

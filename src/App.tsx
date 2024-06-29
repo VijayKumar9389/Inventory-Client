@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar/Navbar.tsx";
 import Login from "./pages/Login/Login";
 import { useInitializeApp} from "./hooks/app.hooks.ts";
 import "./styles/App.scss";
+import "./styles/index.css";
 import RoutesConfig from "./routes/Routes.tsx";
 
 function App() {

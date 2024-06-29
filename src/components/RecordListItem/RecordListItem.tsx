@@ -5,7 +5,6 @@ import {ItemRecord} from '../../models/item.models';
 import {deleteItemRecord} from '../../services/item.service';
 import Dialog from '../Dialog/Dialog';
 import EditItemRecord from '../../pages/LocationPage/components/EditItemRecord/EditItemRecord';
-import ImageWithAlt from '../ImageWithAlt/ImageWithAlt';
 import ConfirmationButton from '../ConfirmationButton/ConfirmationButton';
 import './RecordListItem.scss';
 import axios from 'axios';
@@ -17,7 +16,7 @@ const RecordListItem: React.FC<{ record: ItemRecord }> = ({record}) => {
     const recordImage: string = record.receipt !== undefined ? record.receipt : '';
 
     useEffect(() => {
-        const fetchImageUrl = async () => {
+        const fetchImageUrl = async (): Promise<void> => {
             try {
                 // Get the base URL from environment variables
                 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -41,11 +40,12 @@ const RecordListItem: React.FC<{ record: ItemRecord }> = ({record}) => {
         };
 
         if (recordImage) {
-            fetchImageUrl();
+            fetchImageUrl()
+                .then(() => console.log('Image URL fetched successfully'));
         }
 
         // Cleanup function (optional)
-        return () => {
+        return (): void => {
             setImageUrl(null); // Reset image URL on component unmount
         };
     }, [recordImage]);
@@ -70,9 +70,6 @@ const RecordListItem: React.FC<{ record: ItemRecord }> = ({record}) => {
                 throw new Error('Image URL is not available.')
             }
 
-            console.log(record)
-
-            // Use a library like 'downloadjs' to handle the download
             const response = await fetch(imageUrl);
             const blob = await response.blob();
             const filename = "Receipt";
@@ -90,57 +87,49 @@ const RecordListItem: React.FC<{ record: ItemRecord }> = ({record}) => {
     };
 
     return (
-        <li className="record-card">
-            <div className="record-receipt">
-                {recordImage && imageUrl ? (<ImageWithAlt imageName={recordImage}/>) : (
-                    <div className="no-image">
-                        <div className="placeholder-image"><FaReceipt /></div>
-                    </div>
+        <tr>
+            <td className="record-receipt">
+                <div className="receipt-icon"><FaReceipt/></div>
+            </td>
+            <td>
+                {record.receipt ? (
+                    <span className="chip green">Attached</span>
+                ) : (
+                    <span className="chip red">N/A</span>
                 )}
-
-            </div>
-            <div className="record-details">
-                <div className="detail">
-                    <label>Receipt:</label>
-                    {record.receipt ? (
-                        <span className="chip green">Attached</span>
-                    ) : (
-                        <span className="chip red">None</span>
-                    )}
-                </div>
-                <div className="detail">
-                    <label>Status:</label>
-                    {record.missing ? (
-                        <span className="chip red">Missing</span>
-                    ) : (
-                        <span className="chip green">Available</span>
-                    )}
-                </div>
-            </div>
-            <div className="record-notes">
-                <label>Note:</label>
+            </td>
+            <td>
+                {record.missing ? (
+                    <span className="chip red">Missing</span>
+                ) : (
+                    <span className="chip green">Available</span>
+                )}
+            </td>
+            <td className="record-notes">
                 {record.notes ? (
                     <p className="notes-text">{record.notes}</p>
                 ) : (
-                    <p>None</p>
+                    <p className="notes-text">No Notes</p>
                 )}
-            </div>
-            <div className="record-item-actions">
-                <button onClick={toggleEditDialog}><FaPaperclip/>Attach</button>
-                <button onClick={handleDownloadImage}><HiDownload/>Download</button>
-                <ConfirmationButton
-                    buttonText={"Delete Record"}
-                    confirmationMessage={"Are you sure you want to delete this record?"}
-                    onConfirm={handleDeleteRecord}
-                />
-            </div>
+            </td>
+            <td>
+                <div className="record-item-actions">
+                    <button onClick={toggleEditDialog}><FaPaperclip className="icon"/>Attach</button>
+                    <button onClick={handleDownloadImage}><HiDownload className="icon"/>Download</button>
+                    <ConfirmationButton
+                        buttonText={"Delete"}
+                        confirmationMessage={"Are you sure you want to delete this record?"}
+                        onConfirm={handleDeleteRecord}
+                    />
+                </div>
+            </td>
             <Dialog
                 isOpen={showEditDialog}
                 toggle={toggleEditDialog}
                 heading="Edit Record"
                 element={<EditItemRecord record={record}/>}
             />
-        </li>
+        </tr>
     );
 };
 

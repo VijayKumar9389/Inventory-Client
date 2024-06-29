@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { NewUserInput, User } from "../../../../models/user.models.ts";
-import { editUser } from "../../../../services/user.services.ts";
-import { UpdateUserInput } from "../../../../models/user.models.ts";
+import React, {useEffect, useState} from "react";
+import {NewUserInput, User} from "../../../../models/user.models.ts";
+import {editUser} from "../../../../services/user.services.ts";
+import {UpdateUserInput} from "../../../../models/user.models.ts";
+import {BiSave} from "react-icons/bi";
 
-const EditUser: React.FC<{ user: User }> = ({ user }) => {
+const EditUser: React.FC<{ user: User }> = ({user}) => {
     const [formData, setFormData] = useState<NewUserInput>({
         username: "",
         password: ""
@@ -18,8 +19,8 @@ const EditUser: React.FC<{ user: User }> = ({ user }) => {
     }, [user]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -46,13 +47,15 @@ const EditUser: React.FC<{ user: User }> = ({ user }) => {
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Username:</label>
-                    <input type="text" name="username" value={formData.username} onChange={handleChange} />
+                    <input type="text" name="username" value={formData.username} onChange={handleChange}/>
                 </div>
                 <div className="form-group">
                     <label>Password:</label>
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} />
+                    <input type="password" name="password" value={formData.password} onChange={handleChange}/>
                 </div>
-                <button type="submit">Edit User</button>
+                <div className="btn-container">
+                    <button type="submit"><BiSave className="icon"/>Edit User</button>
+                </div>
             </form>
         </div>
     );
