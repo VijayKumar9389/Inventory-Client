@@ -27,43 +27,6 @@
     }
   }
 
-  .menu-list {
-    display: none;
-    width: 100%;
-    list-style: none;
-    margin: 0;
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      padding: $spacing-medium;
-      color: $text-color;
-      text-decoration: none;
-      transition: ease-in-out .3s;
-      border-radius: $border-radius-small;
-
-      svg {
-        margin-right: $spacing-small;
-        font-size: 1.2rem;
-      }
-
-      &:hover {
-        color: $surface-color;
-        background-color: $primary-color;
-        box-shadow: $box-shadow-light;
-      }
-
-      &.selected {
-        text-decoration: underline;
-      }
-
-      span {
-        font-size: $font-size-medium;
-      }
-    }
-  }
-
-
   .nav-btn {
     display: block;
     margin-left: auto;
@@ -83,25 +46,11 @@
 // Media Queries for Mobile Responsiveness
 @media (max-width: $breakpoint-md) {
   .navbar {
-    flex-direction: column;
     align-items: flex-start;
     padding: $spacing-small;
 
     .logo {
       margin-bottom: $spacing-small;
-    }
-
-    .menu-list {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-
-      .menu-item {
-        margin-left: 0;
-        padding: $spacing-small 0;
-        width: 100%;
-        text-align: center;
-      }
     }
 
     .user-options {
