@@ -113,7 +113,8 @@ $text-color-light: #757575; // Light text color for muted labels
 
     .details-info {
       width: 100%;
-      padding: $spacing-small;
+      padding: 0 $spacing-small;
+
 
       h2 {
         font-size: $font-size-large;
@@ -127,7 +128,8 @@ $text-color-light: #757575; // Light text color for muted labels
 
   .stat-list {
     grid-template-columns: 1fr;
-    gap: $spacing-small;
+    padding: 0 $spacing-small;
+    width: 100%;
   }
 
   .details-icon {

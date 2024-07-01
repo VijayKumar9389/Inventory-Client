@@ -39,30 +39,32 @@ const LocationPageHeading: React.FC<LocationPageHeadingProps> = ({location}) => 
     return (
         <div className="page-heading">
             <button className="action-btn" onClick={() => navigate(-1)}>
-                <BiArrowBack />
+                <BiArrowBack/>
             </button>
-            <h1>{location?.name}</h1>
-            <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
-                <button className="action-btn" onClick={toggleDropdown}>
-                    {isDropdownOpen ? <FaWindowClose /> : <BiDotsHorizontalRounded />}
-                </button>
-                <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                    <button onClick={toggleModal}>
-                        <FaEdit className="icon" />
-                        Edit Location
+            <div className="heading-wrapper">
+                <h1>{location?.name}</h1>
+                <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
+                    <button className="action-btn" onClick={toggleDropdown}>
+                        {isDropdownOpen ? <FaWindowClose/> : <BiDotsHorizontalRounded/>}
                     </button>
-                    <ConfirmationButton
-                        onConfirm={handleDeleteLocation}
-                        confirmationMessage={`Are you sure you want to delete ${location.name}?`}
-                        buttonText="Delete Location"
-                    />
+                    <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
+                        <button onClick={toggleModal}>
+                            <FaEdit className="icon"/>
+                            Edit Location
+                        </button>
+                        <ConfirmationButton
+                            onConfirm={handleDeleteLocation}
+                            confirmationMessage={`Are you sure you want to delete ${location.name}?`}
+                            buttonText="Delete Location"
+                        />
+                    </div>
                 </div>
             </div>
             <Dialog
                 isOpen={isModalOpen}
                 toggle={toggleModal}
                 heading="Edit Location"
-                element={<EditLocation location={location} />}
+                element={<EditLocation location={location}/>}
             />
         </div>
     );

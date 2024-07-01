@@ -1,4 +1,5 @@
 @import 'src/styles/theme/variables.scss';
+
 .action-btn {
   display: flex;
   align-items: center;
@@ -18,38 +19,41 @@
   }
 }
 
-
-
 .page-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: $spacing-medium 0;
-  border-bottom: 1px solid $border-color; // Using border color variable
+  border-bottom: 1px solid $border-color;
 
-  h1 {
-    font-size: 1.75rem;
-    margin: 0;
-    color: $text-color; // Using text color variable
+  .heading-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-grow: 1;
-    text-align: center;
+
+    h1 {
+      font-size: 1.75rem;
+      margin: 0;
+      color: $text-color;
+      text-align: center;
+      flex-grow: 1;
+    }
   }
 
   .dropdown {
     position: relative;
     display: inline-block;
 
-
-
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
-      top: 100%; /* Ensure dropdown content appears below button */
-      background-color: $background-color; // Using background color variable
+      top: 100%;
+      background-color: $background-color;
       min-width: 200px;
-      box-shadow: $box-shadow-medium; // Using box shadow variable
-      z-index: $z-index-dropdown; // Using z-index variable
+      box-shadow: $box-shadow-medium;
+      z-index: $z-index-dropdown;
 
       button {
         width: 100%;
@@ -64,7 +68,6 @@
   }
 }
 
-// Media Queries for Mobile Responsiveness
 @media (max-width: $breakpoint-md) {
   .page-heading {
     flex-direction: column;
@@ -76,9 +79,13 @@
       margin-bottom: $spacing-small;
     }
 
-    h1 {
-      font-size: 1.5rem;
+    .heading-wrapper {
+      width: 100%;
       text-align: center;
+
+      h1 {
+        font-size: 1.5rem;
+      }
     }
 
     .dropdown {

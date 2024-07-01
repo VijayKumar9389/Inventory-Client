@@ -34,19 +34,22 @@ const ItemDetails: React.FC<ItemDetailsProps> = ({item}) => {
             <button className="action-btn" onClick={() => navigate(-1)}>
                 <BiArrowBack />
             </button>
-            <h1>{item.name}</h1>
-            <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
-                <button className="action-btn" onClick={toggleDropdown}>
-                    {isDropdownOpen ? <FaWindowClose /> : <BiDotsHorizontalRounded />}
-                </button>
-                <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                    <ConfirmationButton
-                        buttonText="Delete Item"
-                        confirmationMessage={`Are you sure you want to delete ${item.name}?`}
-                        onConfirm={handleDeleteItem}
-                    />
+            <div className="heading-wrapper">
+                <h1>{item.name}</h1>
+                <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
+                    <button className="action-btn" onClick={toggleDropdown}>
+                        {isDropdownOpen ? <FaWindowClose/> : <BiDotsHorizontalRounded/>}
+                    </button>
+                    <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
+                        <ConfirmationButton
+                            buttonText="Delete Item"
+                            confirmationMessage={`Are you sure you want to delete ${item.name}?`}
+                            onConfirm={handleDeleteItem}
+                        />
+                    </div>
                 </div>
             </div>
+
         </div>
     );
 };
