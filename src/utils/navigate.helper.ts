@@ -10,7 +10,7 @@ export const useNavigation = () => {
 
     // Select item by id
     const selectItem = (itemId: number): void => {
-        navigate(`/items/${itemId}`);
+        navigate(`/${itemId}`);
     }
 
     return {

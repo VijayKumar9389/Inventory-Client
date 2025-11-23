@@ -1,6 +1,7 @@
 import {createUser} from "../../../../services/user.services.ts";
 import React, {useState} from "react";
 import {NewUserInput} from "../../../../models/user.models.ts";
+import {MdCreate} from "react-icons/md";
 
 const CreateUser = () => {
 
@@ -39,7 +40,9 @@ const CreateUser = () => {
                 <label>Password:</label>
                 <input type="password" name="password" value={formData.password} onChange={handleChange}/>
             </div>
-            <button type="submit">Create User</button>
+            <div className="btn-container">
+                <button type="submit"><MdCreate className="icon"/>Create User</button>
+            </div>
         </form>
     );
 }

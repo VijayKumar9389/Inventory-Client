@@ -1,0 +1,35 @@
+@import 'src/styles/theme/variables.scss';
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // Automatically fit columns with a minimum width of 200px
+  gap: $spacing-medium; // Use a variable for spacing between stat items
+
+  .stat-item {
+    background-color: $shade-light; // Use theme variable for background color
+    padding: $spacing-medium; // Use a variable for padding
+    border-radius: $border-radius-medium; // Use a variable for border-radius
+    text-align: center;
+
+    .stat-label {
+      display: block;
+      color: $text-color-light; // Use theme variable for text color
+      margin-bottom: $spacing-small; // Add some space between the label and the value
+    }
+
+    .stat-value {
+      font-weight: $font-weight-bold; // Use variable for bold text
+    }
+  }
+
+  // Media queries for responsiveness
+  @media (max-width: 768px) {
+    // Optional: Adjust grid layout for medium screens if needed
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); // Adjust column width
+  }
+
+  @media (max-width: 480px) {
+    gap: $spacing-small; // Reduce gap on very small screens
+    margin-bottom: $spacing-medium; // Adjust bottom margin
+  }
+}

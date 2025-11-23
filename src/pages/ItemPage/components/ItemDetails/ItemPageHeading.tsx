@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {ItemWithInventory} from "../../../../models/item.models.ts";
 import {BiArrowBack, BiDotsHorizontalRounded} from "react-icons/bi";
 import {useNavigate} from "react-router-dom";
-import {FaWindowClose} from "react-icons/fa";
 import ConfirmationButton from "../../../../components/ConfirmationButton/ConfirmationButton.tsx";
 import {deleteItem} from "../../../../services/item.service.ts";
+import {MdOutlineClose} from "react-icons/md";
 
 interface ItemDetailsProps {
     item: ItemWithInventory;
@@ -34,22 +34,24 @@ const ItemDetails: React.FC<ItemDetailsProps> = ({item}) => {
             <button className="action-btn" onClick={() => navigate(-1)}>
                 <BiArrowBack />
             </button>
-            <div className="heading-wrapper">
+
+            <div className="heading-content">
                 <h1>{item.name}</h1>
-                <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
-                    <button className="action-btn" onClick={toggleDropdown}>
-                        {isDropdownOpen ? <FaWindowClose/> : <BiDotsHorizontalRounded/>}
+                <div className="dropdown-container">
+                    <button className="menu-btn" onClick={toggleDropdown}>
+                        {isDropdownOpen ? <MdOutlineClose /> : <BiDotsHorizontalRounded />}
                     </button>
-                    <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                        <ConfirmationButton
-                            buttonText="Delete Item"
-                            confirmationMessage={`Are you sure you want to delete ${item.name}?`}
-                            onConfirm={handleDeleteItem}
-                        />
-                    </div>
+                    {isDropdownOpen && (
+                        <div className="dropdown-content">
+                            <ConfirmationButton
+                                buttonText="Delete Item"
+                                confirmationMessage={`Are you sure you want to delete ${item.name}?`}
+                                onConfirm={handleDeleteItem}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
-
         </div>
     );
 };

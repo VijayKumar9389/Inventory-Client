@@ -8,34 +8,14 @@
   width: 100%;
 }
 
-.section-heading {
-  font-size: $font-size-large;
-  font-weight: $font-weight-bold;
-  color: $text-color;
-  padding: $spacing-medium 0;
+.page-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
-  border-bottom: 1px solid $border-color; // Using border color variable
+  grid-template-columns: 1fr auto;
+  gap: $spacing-small;
+  align-items: center;
+  width: 100%;
 
-  h1 {
-    text-transform: uppercase;
-  }
-
-  .page-actions {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: $spacing-small;
-    align-items: center;
-    width: 100%;
-
-    @media (max-width: $breakpoint-md) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media screen and (max-width: $breakpoint-md) {
+  @media (max-width: $breakpoint-md) {
     grid-template-columns: 1fr;
   }
 }
-

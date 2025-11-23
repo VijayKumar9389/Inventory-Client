@@ -3,6 +3,7 @@ import Dialog from "../../components/Dialog/Dialog.tsx";
 import CreateUser from "./components/CreateUser/CreateUser.tsx";
 import {useState} from "react";
 import PageActions from "../../components/PageActions/PageActions.tsx";
+import SectionHeader from "../../components/SectionHeader/SeactionHeader.tsx";
 
 const Users = () => {
     const [isModelOpen, setIsModelOpen] = useState(false);
@@ -19,13 +20,13 @@ const Users = () => {
 
     return (
         <div className="section">
+            <SectionHeader title={"Users"} />
             <PageActions
                 onToggleModal={toggleModal}
                 buttonLabel="Add User"
                 searchTerm={searchTerm}
                 onSearch={handleSearch}
                 placeholder="Search Users"
-                heading="Users"
             />
             <div className="section-content">
                 <UserTable/>

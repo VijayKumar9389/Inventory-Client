@@ -5,6 +5,8 @@ import PageActions from "../../components/PageActions/PageActions.tsx";
 import {useGetLocations} from "../../hooks/location.hooks.ts";
 import LocationTable from "./components/LocationTable/LocationTable.tsx";
 import {LocationWithInventory} from "../../models/location.models.ts";
+import SectionHeader from "../../components/SectionHeader/SeactionHeader.tsx";
+import LocationStats from "./components/LocationStats/LocationStats.tsx";
 
 const Locations: React.FC = () => {
     const {locations, loading, error} = useGetLocations();
@@ -28,13 +30,14 @@ const Locations: React.FC = () => {
 
     return (
         <div className="section">
+            <SectionHeader title={"Locations"} />
+            <LocationStats locations={locations} />
             <PageActions
                 onToggleModal={toggleModal}
                 buttonLabel="Add Location"
                 searchTerm={searchTerm}
                 onSearch={handleSearch}
                 placeholder="Search Locations"
-                heading="Locations"
             />
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}

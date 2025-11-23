@@ -11,7 +11,6 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: initialState,
     reducers: {
-
         setLogin: (state, action: PayloadAction<{ auth: boolean, user: string }>): void => {
             state.loggedIn = action.payload.auth;
             state.username = action.payload.user;

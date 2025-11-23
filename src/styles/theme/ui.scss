@@ -7,7 +7,6 @@ button {
   border: none;
   border-radius: $border-radius-small;
   padding: $spacing-small $spacing-medium;
-  font-size: $font-size-medium;
   cursor: pointer;
   transition: $transition-medium;
   align-items: center;
@@ -59,7 +58,6 @@ textarea {
   padding: $spacing-small;
   border: $border-width-thin solid $border-color;
   border-radius: $border-radius-small;
-  font-size: $font-size-medium;
   background-color: $shade-light;
   height: 100px;
   resize: none;
@@ -78,9 +76,9 @@ textarea {
 }
 
 .chip {
-  border-radius: 50px;
+  border-radius: $border-radius-small;
   font-weight: $font-weight-bold;
-  padding: 5px 10px;
+  padding: $spacing-xsmall $spacing-small;
   display: flex;
   width: fit-content;
 
@@ -102,54 +100,98 @@ textarea {
 
 .table-wrapper {
   overflow-x: auto;
-  box-shadow: $box-shadow-light;
   border-radius: $border-radius-small;
-  background-color: $surface-color;
 }
 
-.record-wrapper {
-  overflow-x: auto;
-}
 
-.record-actions {
-  display: flex;
-  align-items: center;
-  gap: $spacing-small;
-  width: fit-content;
+// Inventory list module
+.inventory-list {
+  .inventory-item {
+    border-bottom: 1px solid $border-color;
+    overflow: hidden;
+    transition: box-shadow $transition-medium, border-color $transition-medium;
+    position: relative; // To position the shadow
 
-  /* Ensure buttons have consistent height and alignment */
-  button {
-    display: inline-flex;
+    &.expanded {
+      box-shadow: $box-shadow-light;
+      border: none;
+    }
+
+  }
+
+  .item-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding: $spacing-small $spacing-medium; /* Adjust padding as needed */
-    border: none;
-    background-color: $primary-color;
-    color: $surface-color;
-    border-radius: $border-radius-small;
+    padding: $spacing-medium;
     cursor: pointer;
-    transition: background-color $transition-medium;
+    transition: background-color $transition-medium, padding $transition-medium;
+
+    &.expanded {
+      background-color: $shade-light; // Background color when expanded
+    }
+
+    &:hover {
+      background-color: $shade-light; // Background color on hover
+    }
+  }
+
+  .item-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height $transition-medium, padding $transition-medium;
+    border-top: 1px solid $border-color; // Add border to separate content
+
+    &.expanded {
+      max-height: 500px; // Adjust to fit content, or calculate dynamically
+      padding: $spacing-medium;
+    }
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: $primary-color;
+    transition: transform $transition-medium, color $transition-medium;
+
+
+    svg {
+      transition: transform $transition-medium;
+    }
+  }
+
+  .add-record-btn-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: $spacing-medium; // Centering button container
+  }
+
+  .add-record-btn {
+    display: flex;
+    align-items: center;
+    background-color: $primary-color;
+    color: #fff;
+    padding: $spacing-small $spacing-medium;
+    border-radius: $border-radius-small;
+    border: none;
+    cursor: pointer;
+    transition: background-color $transition-medium, transform $transition-medium;
+
+    svg {
+      margin-right: $spacing-small;
+    }
 
     &:hover {
       background-color: $primary-color-dark;
+      transform: scale(1.05);
     }
 
-    .icon {
-      margin-right: $spacing-small;
+    &:active {
+      background-color: $primary-color-dark;
+      transform: scale(0.98);
     }
   }
-}
-
-// Inventory list for Items and Locations
-.inventory-list {
-}
-
-.inventory-records-list {
-  list-style-type: none;
-  background-color: $surface-color;
-  border: $border-width-thin solid $border-color;
-  //box-shadow: $box-shadow-light;
-  padding: $spacing-small;
-  margin-bottom: $spacing-medium;
-  border-radius: $border-radius-small;
 }

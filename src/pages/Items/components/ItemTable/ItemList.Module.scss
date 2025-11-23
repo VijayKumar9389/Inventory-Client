@@ -1,0 +1,134 @@
+.item-list__row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 16px;
+  margin: 12px 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #ddd;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  // Responsive layout for tablets and larger screens
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  // Even more changes for larger screens
+  @media (min-width: 1024px) {
+    padding: 20px;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #2AC420;
+  }
+}
+
+.item-list__image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  max-width: 100%;
+  margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    margin-right: 24px;
+    width: 150px;
+    height: 150px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+}
+
+.item-list__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.item-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+
+  h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #2AC420;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  // Scale up fonts for larger screens
+  @media (min-width: 1024px) {
+    h3 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.item-list__status-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+
+  .status-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 1rem;
+
+    .status-item {
+      font-weight: 500;
+      color: #666;
+
+      strong {
+        color: #333;
+      }
+    }
+
+    .status-value {
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  // Responsive grid for tablets and larger
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  // Further adjustments for larger screens
+  @media (min-width: 1024px) {
+    gap: 16px;
+  }
+}

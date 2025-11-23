@@ -1,0 +1,144 @@
+@import 'src/styles/theme/variables.scss';
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: $spacing-medium;
+  padding: $spacing-large;
+  background-color: $surface-color;
+  color: $text-color;
+  width: 100%;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: $z-index-dropdown;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); // Subtle shadow for modern flat UI
+
+  // User icon section
+  .user-icon {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: $spacing-medium; // Consistent padding for all sections
+    margin: $spacing-medium 0;
+    gap: $spacing-small;
+    border-radius: $border-radius-small;
+
+    .user-icon-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: $background-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        font-size: 2.5rem; // Adjusted size for balance
+        color: $shade-dark;
+      }
+    }
+
+    .user-name {
+      font-size: 1.15rem; // Consistent size for modern look
+      color: $text-color;
+      font-weight: 600; // Softer, more modern weight
+      text-transform: capitalize; // Changed from uppercase for a softer feel
+    }
+  }
+
+  // Mobile responsiveness
+  @media (max-width: $breakpoint-md) {
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-small;
+  }
+
+  // Logo Section
+  .logo {
+    max-width: 140px; // Balanced logo size
+    height: auto;
+    margin: 0 auto;
+
+    @media (max-width: $breakpoint-md) {
+      max-width: 110px;
+      height: 45px;
+      margin: 0;
+    }
+  }
+
+  // Navigation Links
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: $spacing-small;
+
+    @media (max-width: $breakpoint-md) {
+      display: none;
+    }
+
+    .navbar-link {
+      display: flex;
+      align-items: center;
+      padding: $spacing-small $spacing-medium;
+      color: $text-color;
+      text-decoration: none;
+      border-radius: $border-radius-small;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+      svg {
+        margin-right: $spacing-small;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      &:hover,
+      &.active {
+        background-color: lighten($primary-color, 5%); // Subtle hover effect
+        color: #fff;
+
+        svg {
+          transform: scale(1.1); // Interactive feedback for icons
+        }
+      }
+    }
+  }
+
+  // Sidebar Toggle Button (shown only on mobile)
+  .nav-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: $text-color-light;
+    cursor: pointer;
+    padding: $spacing-small;
+    z-index: 1100;
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+    &:hover {
+      color: $primary-color;
+      transform: scale(1.1); // Slight scaling for interaction feedback
+    }
+
+    @media (max-width: $breakpoint-md) {
+      display: block;
+    }
+
+    svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  }
+}
+
+// Utility Class: Hidden on medium and larger screens
+.hidden-md-up {
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}

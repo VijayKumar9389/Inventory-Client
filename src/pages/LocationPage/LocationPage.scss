@@ -1,14 +1,1 @@
 @import 'src/styles/theme/variables.scss';
-
-.record-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.record-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ddd; // Add a bottom border for separation
-}

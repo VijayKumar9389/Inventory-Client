@@ -1,6 +1,6 @@
 import React, {useState, ChangeEvent} from 'react';
 import {BiSearch, BiX} from 'react-icons/bi';
-import './Input.scss';
+import './Input.Module.scss';
 
 interface InputProps {
     value: string;

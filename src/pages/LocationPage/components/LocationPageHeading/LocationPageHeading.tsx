@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import {BiArrowBack, BiDotsHorizontalRounded} from "react-icons/bi";
-import {FaEdit, FaWindowClose} from "react-icons/fa";
+import {FaEdit} from "react-icons/fa";
 import {LocationWithInventory} from "../../../../models/location.models";
 import {deleteLocation} from "../../../../services/location.services";
 import Dialog from "../../../../components/Dialog/Dialog";
 import EditLocation from "../EditLocation/EditLocation";
 import {useNavigate} from "react-router-dom";
 import ConfirmationButton from "../../../../components/ConfirmationButton/ConfirmationButton.tsx";
+import {MdOutlineClose} from "react-icons/md";
 
 interface LocationPageHeadingProps {
     location: LocationWithInventory;
@@ -39,32 +40,37 @@ const LocationPageHeading: React.FC<LocationPageHeadingProps> = ({location}) => 
     return (
         <div className="page-heading">
             <button className="action-btn" onClick={() => navigate(-1)}>
-                <BiArrowBack/>
+                <BiArrowBack />
             </button>
-            <div className="heading-wrapper">
+
+            <div className="heading-content">
                 <h1>{location?.name}</h1>
-                <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
-                    <button className="action-btn" onClick={toggleDropdown}>
-                        {isDropdownOpen ? <FaWindowClose/> : <BiDotsHorizontalRounded/>}
+                <div className="dropdown-container">
+                    <button className="menu-btn" onClick={toggleDropdown}>
+                        {isDropdownOpen ? <MdOutlineClose /> : <BiDotsHorizontalRounded />}
                     </button>
-                    <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                        <button onClick={toggleModal}>
-                            <FaEdit className="icon"/>
-                            Edit Location
-                        </button>
-                        <ConfirmationButton
-                            onConfirm={handleDeleteLocation}
-                            confirmationMessage={`Are you sure you want to delete ${location.name}?`}
-                            buttonText="Delete Location"
-                        />
-                    </div>
+
+                    {isDropdownOpen && (
+                        <div className="dropdown-content">
+                            <button className="edit-btn" onClick={toggleModal}>
+                                <FaEdit className="icon" />
+                                Edit Location
+                            </button>
+                            <ConfirmationButton
+                                onConfirm={handleDeleteLocation}
+                                confirmationMessage={`Are you sure you want to delete ${location.name}?`}
+                                buttonText="Delete Location"
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
+
             <Dialog
                 isOpen={isModalOpen}
                 toggle={toggleModal}
                 heading="Edit Location"
-                element={<EditLocation location={location}/>}
+                element={<EditLocation location={location} />}
             />
         </div>
     );

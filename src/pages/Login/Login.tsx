@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {loginUser} from "../../services/user.services.ts";
 import {useDispatch} from "react-redux";
 import {setLogin} from "../../store/reducers/auth.reducer.ts";
-import './Login.scss';
-import Logo from "../../assets/LogoTwo.png";
+import './Login.Module.scss';
+import Logo from "../../assets/Logo.png";
 import {MdLogin} from "react-icons/md";
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
         <div className="login-container">
             <div className="login-wrapper">
                 <h1 className="login-title">
-                    <h2 className="form-title">Please Sign In</h2>
+                    <h2 className="form-title">Welcome Back, Please Sign In!</h2>
                     <img src={Logo} alt="Logo"/>
                 </h1>
                 <form onSubmit={onLoginClick} className="form">

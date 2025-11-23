@@ -1,0 +1,114 @@
+@import 'src/styles/theme/variables.scss';
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px; // Slightly wider for modern design
+  height: 100%;
+  background-color: $surface-color;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out; // Smoother transition
+  z-index: $z-index-dropdown;
+  border-bottom-left-radius: $border-radius-large; // Larger, smoother radius for modern look
+  border-top-left-radius: $border-radius-large;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); // Add subtle shadow for depth
+
+  &.open {
+    transform: translateX(0);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); // Slightly stronger shadow when open for contrast
+  }
+
+  // User icon section
+  .user-icon {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: $spacing-medium; // Consistent padding for all sections
+    margin: $spacing-medium 0;
+    gap: $spacing-small;
+    border-radius: $border-radius-small;
+
+    .user-icon-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: $shade-light;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        font-size: 2.5rem; // Adjusted size for balance
+        color: $shade-dark;
+      }
+    }
+
+    .user-name {
+      font-size: 1.15rem; // Consistent size for modern look
+      color: $text-color;
+      font-weight: 600; // Softer, more modern weight
+      text-transform: capitalize; // Changed from uppercase for a softer feel
+    }
+  }
+
+  // Sidebar links
+  .sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-small; // Consistent gap for modern layout
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      padding: $spacing-medium;
+      color: $text-color-light;
+      text-decoration: none;
+      border-bottom: 1px solid $border-color;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; // Smoother hover effects
+
+      &:hover {
+        background-color: lighten($shade-dark, 5%); // Softer hover effect
+        color: $text-color-light;
+      }
+
+      svg {
+        margin-right: $spacing-small;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Logout section at the bottom
+  .sidebar-logout-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: $spacing-medium;
+
+    .sidebar-logout-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: $spacing-small; // Consistent padding
+      background-color: $primary-color;
+      color: #fff;
+      border-radius: $border-radius-small;
+      transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; // Interactive transition
+
+      &:hover {
+        background-color: darken($primary-color, 10%); // Darker color on hover
+        transform: scale(1.05); // Slight scale effect for interaction feedback
+      }
+    }
+  }
+}

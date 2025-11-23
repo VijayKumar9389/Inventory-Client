@@ -23,21 +23,23 @@
 
   .confirmation-content {
     background-color: $surface-color;
-    padding: $spacing-medium;
+    padding: $spacing-large; // Slightly larger padding for a more spacious look
     border-radius: $border-radius-medium;
-    box-shadow: $box-shadow-medium;
+    box-shadow: $box-shadow-dark;
     width: 80%;
     max-width: 400px;
+    position: relative;
+    animation: scaleUpModal $transition-medium;
 
     p {
       margin-bottom: $spacing-medium;
       text-align: center;
-      font-size: $font-size-large;
       color: $text-color;
     }
 
     .confirm-btn-wrapper {
       display: flex;
+      align-items: center;
       justify-content: center;
       margin-bottom: $spacing-medium;
 
@@ -45,6 +47,7 @@
         margin: 0 $spacing-small;
         border-radius: $border-radius-small !important;
         width: fit-content !important;
+        height: fit-content !important;
         padding: $spacing-small $spacing-medium !important;
 
         &.cancel-button {
@@ -64,21 +67,6 @@
             background-color: darken($danger-color, 10%);
           }
         }
-      }
-    }
-
-    .close-button {
-      position: absolute;
-      top: $spacing-small;
-      right: $spacing-small;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-size: $font-size-xlarge;
-      color: $text-color;
-
-      &:hover {
-        color: $primary-color;
       }
     }
   }

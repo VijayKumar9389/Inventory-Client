@@ -36,7 +36,7 @@ const UserTableRow: React.FC<{ user: User }> = ({user}) => {
             <tr key={user.id}>
                 <td>{user.username}</td>
                 <td>{user.isAdmin ? "True" : "False"}</td>
-                <td className="record-actions">
+                <td className="record-item-actions">
                     <button onClick={() => toggleModal()}>
                         <FaEdit className="icon"/> Edit
                     </button>

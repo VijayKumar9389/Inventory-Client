@@ -3,9 +3,8 @@ import {FaBox, FaLocationDot, FaUser} from "react-icons/fa6";
 import React from "react";
 import {setLogout} from "../../store/reducers/auth.reducer.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {MdClose} from "react-icons/md";
 import {FaSignOutAlt} from "react-icons/fa";
-import "./Sidebar.scss";
+import "./Sidebar.Module.scss";
 import {RootState} from "../../store/store.ts";
 
 interface SidebarProps {
@@ -26,9 +25,6 @@ const Sidebar: React.FC<SidebarProps> = ({isOpen, toggle}) => {
 
     return (
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-            <div className="sidebar-header">
-                <button className="action-btn" onClick={toggle}><MdClose/></button>
-            </div>
             <div className="user-icon">
                 <div className="user-icon-image">
                     <FaUser/>
@@ -42,6 +38,7 @@ const Sidebar: React.FC<SidebarProps> = ({isOpen, toggle}) => {
                 {isAdmin && (
                     <>
                         <Link className="sidebar-link" onClick={toggle} to="/users"><FaUser/><span>Users</span></Link>
+                        <Link className="sidebar-link" onClick={toggle} to="/questions"><FaUser/><span>Customer Questions</span></Link>
                     </>
                 )}
             </ul>

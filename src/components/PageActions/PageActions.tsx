@@ -9,13 +9,10 @@ interface PageActionsProps {
     searchTerm: string;
     onSearch: (searchTerm: string) => void;
     placeholder: string;
-    heading: string;
 }
 
-const PageActions: React.FC<PageActionsProps> = ({onToggleModal, buttonLabel, searchTerm, onSearch, placeholder, heading}) => {
+const PageActions: React.FC<PageActionsProps> = ({onToggleModal, buttonLabel, searchTerm, onSearch, placeholder}) => {
     return (
-        <div className="section-heading">
-            <h1>{heading}</h1>
             <div className="page-actions">
                 <Input value={searchTerm} placeholder={placeholder} onChange={onSearch}/>
                 <button onClick={onToggleModal}>
@@ -23,7 +20,6 @@ const PageActions: React.FC<PageActionsProps> = ({onToggleModal, buttonLabel, se
                     {buttonLabel}
                 </button>
             </div>
-        </div>
     );
 };
 

@@ -5,6 +5,8 @@ import PageActions from "../../components/PageActions/PageActions.tsx";
 import CreateItem from "./components/CreateItem/CreateItem.tsx";
 import ItemTable from "./components/ItemTable/ItemTable.tsx";
 import {ItemWithInventory} from "../../models/item.models.ts";
+import ItemStats from "./components/ItemStats/ItemStats.tsx";
+import SectionHeader from "../../components/SectionHeader/SeactionHeader.tsx";
 
 const Items: React.FC = () => {
     const {items, loading, error} = useGetItems();
@@ -21,20 +23,21 @@ const Items: React.FC = () => {
         setSearchTerm(term);
     };
 
-    // Filter items based on search term
-    const filteredItems: ItemWithInventory[] = items.filter(item =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // Add search filter if applied
+    const filteredItems: ItemWithInventory[] = items.filter(item => {
+        return item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    })
 
     return (
         <div className="section">
+            <SectionHeader title={"Items"} />
+            <ItemStats items={items} />
             <PageActions
                 onToggleModal={toggleModal}
                 buttonLabel="Add Item"
                 searchTerm={searchTerm}
                 onSearch={handleSearch}
                 placeholder="Search Items"
-                heading="Items"
             />
 
             {loading && <p>Loading...</p>}

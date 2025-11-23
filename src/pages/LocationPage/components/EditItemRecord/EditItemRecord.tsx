@@ -98,7 +98,9 @@ const EditItemRecord: React.FC<{ record: ItemRecord }> = ({record}) => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('missing', e.target.checked)}
                     />
                 </div>
-                <button className="form-button" type="submit">Update</button>
+                <div className="btn-container">
+                    <button className="form-button" type="submit">Update</button>
+                </div>
             </form>
         </div>
     );

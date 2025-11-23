@@ -20,7 +20,6 @@ const ItemTableRow: React.FC<{ item: ItemWithInventory }> = ({item}) => {
             </td>
             <td className="tbl-details">
                 <h2>{item.name}</h2>
-                <p>{item.description}</p>
             </td>
             <td>
                 <strong>${item.value}</strong>

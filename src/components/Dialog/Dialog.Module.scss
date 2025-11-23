@@ -15,7 +15,7 @@
 }
 
 .popup-box {
-  background-color: $surface-color;
+  background-color: $background-color;
   box-shadow: $box-shadow-dark;
   width: 90%; // Responsive width
   height: 80%; // Responsive height
@@ -34,23 +34,36 @@
   border-bottom: 1px solid $border-color;
   position: relative;
   z-index: $z-index-tooltip;
+  background-color: $shade-light;
 
   .panel-label {
-    font-size: $font-size-large;
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
     margin: 0;
   }
 
   .close-button {
-    background: none;
     border: none;
-    color: inherit;
-    font-size: $font-size-xlarge;
     cursor: pointer;
-    transition: color $transition-medium;
+    width: 2.5rem; // Adjust size of the button
+    height: 2.5rem;
+    border-radius: 50%; // Make it round
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-color;
+    color: #fff; // Ensure icon is visible
+    transition: background-color $transition-medium, color $transition-medium;
+    padding: 0;
+
+    svg {
+      width: 1.2rem; // Size for the SVG icon
+      height: 1.2rem;
+    }
 
     &:hover {
-      color: darken($primary-color, 10%);
+      background-color: $primary-color-dark;
+      color: $surface-color; // Change icon color on hover if needed
     }
   }
 }
@@ -92,14 +105,6 @@
 
   .popup-header {
     padding: $spacing-small;
-
-    .panel-label {
-      font-size: $font-size-medium;
-    }
-
-    .close-button {
-      font-size: $font-size-large;
-    }
   }
 
   .popup-content {

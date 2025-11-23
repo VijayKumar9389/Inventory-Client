@@ -1,18 +1,154 @@
-@import './variables.scss';
+// Import Google Font (Inter)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import "./variables.scss";
+
+// Font Sizes for Headings
+
+// H1
+$font-size-h1: 2rem;      // Default H1 size
+$font-size-h1-xs: 1.5rem;  // H1 size for extra small screens
+$font-size-h1-xl: 2.5rem;  // H1 size for extra large screens
+
+// H2
+$font-size-h2: 1.75rem;    // Default H2 size
+$font-size-h2-xs: 1.25rem; // H2 size for extra small screens
+$font-size-h2-xl: 2.25rem; // H2 size for extra large screens
+
+// H3
+$font-size-h3: 1.5rem;     // Default H3 size
+$font-size-h3-xs: 1.2rem;  // H3 size for extra small screens
+$font-size-h3-xl: 1.75rem; // H3 size for extra large screens
+
+// H4
+$font-size-h4: 1.25rem;    // Default H4 size
+$font-size-h4-xs: 1rem;    // H4 size for extra small screens
+$font-size-h4-xl: 1.5rem;  // H4 size for extra large screens
+
+// H5
+$font-size-h5: 1rem;       // Default H5 size
+$font-size-h5-xs: 0.9rem;  // H5 size for extra small screens
+$font-size-h5-xl: 1.25rem; // H5 size for extra large screens
+
+// H6
+$font-size-h6: 0.9rem;     // Default H6 size
+$font-size-h6-xs: 0.75rem; // H6 size for extra small screens
+$font-size-h6-xl: 1rem;    // H6 size for extra large screens
+
+// Font Sizes for Paragraphs
+$font-size-p: 0.9rem;      // Default paragraph size
+$font-size-p-xs: 0.8rem;   // Paragraph size for extra small screens
+$font-size-p-xl: 1rem;     // Paragraph size for extra large screens
+
+// Global Styles
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: $font-size-p;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: $background-color;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-p-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-p-xl;
+  }
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  line-height: $line-height-heading;
+}
 
 h1 {
-  margin: 0;
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-h1-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-h1-xl;
+  }
 }
 
 h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0;
+  font-size: $font-size-h2;
+  font-weight: $font-weight-bold;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-h2-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-h2-xl;
+  }
 }
 
+h3 {
+  font-size: $font-size-h3;
+  font-weight: $font-weight-medium;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-h3-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-h3-xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-h4;
+  font-weight: $font-weight-medium;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-h4-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-h4-xl;
+  }
+}
+
+h5 {
+  font-size: $font-size-h5;
+  font-weight: $font-weight-regular;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-h5-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-h5-xl;
+  }
+}
+
+h6 {
+  font-size: $font-size-h6;
+  font-weight: $font-weight-regular;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-h6-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-h6-xl;
+  }
+}
+
+// Paragraphs
 p {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  color: $text-color-light;
+  font-size: $font-size-p;
+  line-height: $line-height-base;
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: $font-size-p-xs;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    font-size: $font-size-p-xl;
+  }
 }

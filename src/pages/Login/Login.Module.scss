@@ -1,0 +1,130 @@
+@import '../../styles/theme/variables.scss';
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: $spacing-medium;
+  //background-image: linear-gradient(to right, $primary-color, $primary-color-dark);
+  animation: fadeIn 0.8s ease-out;
+    background-color: #000;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-small;
+  }
+}
+
+.login-wrapper {
+  background: $background-color;
+  padding: $spacing-large;
+  border-radius: $border-radius-large;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 100%;
+  max-width: 460px;
+  transition: transform $transition-medium ease, box-shadow $transition-medium ease;
+  animation: fadeUp 0.6s ease-out forwards;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-large;
+    border-radius: $border-radius-medium;
+  }
+
+  .form-btn {
+    margin-top: $spacing-large;
+    width: 100%;
+    background-color: $primary-color;
+    border: none;
+    padding: $spacing-medium;
+    color: #fff;
+    font-weight: $font-weight-bold;
+    font-size: 1rem;
+    border-radius: $border-radius-small;
+    cursor: pointer;
+    transition: background-color $transition-fast ease, transform $transition-fast ease;
+
+    &:hover {
+      background-color: $primary-color-dark;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.login-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-large;
+  margin-bottom: $spacing-large;
+
+  h2 {
+    color: $text-color;
+    font-size: 1.5rem;
+    font-weight: $font-weight-normal;
+  }
+
+  p {
+    color: $text-color-light;
+    font-size: 0.95rem;
+  }
+
+  img {
+    max-height: 100px;
+    margin-bottom: $spacing-small;
+    transition: transform $transition-medium;
+
+    @media (max-width: $breakpoint-md) {
+      max-height: 70px;
+    }
+  }
+}
+
+.input-field {
+  margin-bottom: $spacing-medium;
+  width: 100%;
+  text-align: left;
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    color: $text-color-light;
+    margin-bottom: $spacing-small;
+  }
+
+  input {
+    width: 100%;
+    padding: $spacing-small $spacing-medium;
+    border: $border-width-thin solid $border-color;
+    border-radius: $border-radius-small;
+    background: $shade-light;
+    color: $text-color;
+    font-size: 1rem;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $text-color-light;
+    }
+  }
+}
+
+.login-footer {
+  margin-top: $spacing-large;
+  font-size: 0.9rem;
+
+  a {
+    color: $secondary-color-dark;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}

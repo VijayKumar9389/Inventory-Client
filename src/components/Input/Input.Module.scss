@@ -1,0 +1,47 @@
+@import "src/styles/theme/variables.scss";
+
+
+// Search button styling
+.search-btn {
+  position: relative;
+  padding: $spacing-small; // Use spacing variable for padding
+  border-radius: 50%; // Circular button
+  color: $text-color; // Text color variable
+  cursor: pointer; // Pointer for better UX
+  transition: background-color $transition-medium ease-in-out; // Smooth transition on hover
+  display: flex; // Aligning SVG icon centrally
+  justify-content: center; // Center align the icon
+  align-items: center;
+  background-color: #fff; // Light background for default state
+
+  &:hover {
+    background-color: #e0e0e0; // Primary color for hover effect
+    color: $text-color; // Change text color on hover
+  }
+
+  svg {
+    font-size: 1rem; // Ensure the icon is visible
+  }
+}
+.input-container {
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius-small;
+  border: 1px solid $border-color; // Using border color variable
+  z-index: 100;
+  background-color: $background-color; // Using background color variable
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: $spacing-small;
+    outline: none;
+    border: none;
+    border-radius: $border-radius-small;
+    font-size: 16px;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+  }
+}

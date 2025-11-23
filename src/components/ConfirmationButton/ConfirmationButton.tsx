@@ -1,5 +1,5 @@
 import {useState, FC, useEffect} from 'react';
-import './ConfirmationButton.scss';
+import './ConfirmationButton.Module.scss';
 import {MdDelete} from "react-icons/md";
 import {TiCancel} from "react-icons/ti";
 
